@@ -1,30 +1,32 @@
+//https://fb.me/react-async-component-lifecycle-hooks
 import React ,{Component}from 'react';
 import {SafeAreaView,StyleSheet, View,FlatList,
   Text,Image,StatusBar, TextInput,Dimensions, ScrollView, ImageBackground,} from 'react-native';
 import { Carousel, Button} from '@ant-design/react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { Actions } from 'react-native-router-flux';
 const {width} = Dimensions.get("window");
 const w=width/640;
 const article =[
   {
-    img:require("../assets/dqh/article1.png"),
+    img:require("../../assets/dqh/article1.png"),
     tit:"故宫的大怪兽：让你看到一个不一样的故宫文化介绍",
   },
   {
-    img:require("../assets/dqh/article2.png"),
+    img:require("../../assets/dqh/article2.png"),
     tit:"老北京的传说:太和殿的龙没法儿数",
   },
   {
-    img:require("../assets/dqh/article3.png"),
+    img:require("../../assets/dqh/article3.png"),
     tit:"景色如画：        欣赏各地景色，提升文化素养",
   },
 ]
 export default class Home extends Component{
 render(){
   return (
-    <ImageBackground source={require("../assets/dqh/homebcc.png")} style={{width: '100%',height:"100%"}}>
+    <ImageBackground source={require("../../assets/dqh/homebc.png")} style={{width: '100%',height:"100%"}}>
     <View>
-      <ImageBackground source={require("../assets/dqh/search.jpg")} style={{width: '100%',}}>
+      <ImageBackground source={require("../../assets/dqh/search.jpg")} style={{width: '100%',}}>
       <View style={styles.head}>
           <View style={styles.search}>
               <TextInput placeholder='请输入目的地'
@@ -43,19 +45,19 @@ render(){
       dotActiveStyle={{ backgroundColor: "red" }}
       style={{overflow:"hidden",height:300*w}}
     >
-       <Image source={require("../assets/dqh/1.png")} style={styles.car}/>
-       <Image source={require("../assets/dqh/2.png")} style={styles.car}/>
-       <Image source={require("../assets/dqh/3.png")} style={styles.car}/>
-       <Image source={require("../assets/dqh/4.png")} style={styles.car}/>
+       <Image source={require("../../assets/dqh/1.png")} style={styles.car}/>
+       <Image source={require("../../assets/dqh/2.png")} style={styles.car}/>
+       <Image source={require("../../assets/dqh/3.png")} style={styles.car}/>
+       <Image source={require("../../assets/dqh/4.png")} style={styles.car}/>
     </Carousel>
     <View style={styles.gg}>
-      <ImageBackground  source={require("../assets/dqh/dmaoxian.jpg")} style={styles.gugong} >
-      <Text  style={styles.ggp}>故宫大冒险：让你在游戏中了解故宫</Text>
+      <ImageBackground  source={require("../../assets/dqh/dmaoxian.jpg")} style={styles.gugong} >
+      <Text  style={styles.ggp} onPress={()=>Actions.game()}>故宫大冒险：让你在游戏中了解故宫</Text>
       </ImageBackground>
     </View>
     <View style={styles.articles}>
         <Text style={styles.article}>文章推送</Text>
-        <Text style={styles.look}>查看更多>></Text></View>
+        <Text style={styles.look} onPress={()=>Actions.article()}>查看更多>></Text></View>
         <FlatList 
           data={article}
           renderItem={({item})=>(
