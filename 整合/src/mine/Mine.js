@@ -27,7 +27,7 @@ export default class Mine extends Component {
                         <Button style={styles.trends}>编辑资料</Button>
                         <Button style={styles.trends}>退出登录</Button>
                     </View>
-                    <Image style={styles.tou} source={require('../assets/yjy/ytx.png')} />
+                    <Image style={styles.tou} source={require('../../assets/yjy/ytx.png')} />
                 </ImageBackground>
             </View>
         )

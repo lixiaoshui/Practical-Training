@@ -21,6 +21,8 @@ import Community from './src/community/Community';
 import Detail from './src/community/Detail';
 
 import Mine from './src/mine/Mine';
+import Change from './src/mine/Change';
+import Editor from './src/mine/Editor';
 
 
 console.disableYellowBox = true;
@@ -186,6 +188,9 @@ const App = () => {
 				<Scene key='detail' component={Detail} />
 
 				<Scene key="tryselect" component={tryselect}/>
+
+				<Scene key='change' component={Change} />
+				<Scene key='editor' component={Editor} />
 			</Modal>
 			</Overlay>
 		</Router>
