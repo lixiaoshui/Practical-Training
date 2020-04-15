@@ -15,6 +15,16 @@ export default class Editor extends Component {
             intro:'大家好，我是小知'
         }
     }
+    // componentDidMount(){
+    //     fetch("/backlogin/backlist")
+    //     .then(res=>res.json())
+    //     .then(res=>{
+    //         console.log(res);
+    //         this.setState({
+    //             data:res.message
+    //         })
+    //     })
+    // }
     render() {
         return (
             <View>
