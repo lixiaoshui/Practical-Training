@@ -3,16 +3,26 @@ import {StyleSheet,View,Text, Image, BackHandler,ToastAndroid,AsyncStorage} from
 import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal, Actions} from 'react-native-router-flux';
 import { Icon } from '@ant-design/react-native';
 import SplashScreen from 'react-native-splash-screen';
-import Home from './component/Home';
-import Store from './component/Store';
-import Personal from './component/Personal';
+
 import Release from './component/Release';
 import Login from './src/common/Login';
 import SwiperPage from './src/common/SwiperPage';
 import Register from './src/common/Register';
 
+import Home from './src/home/Home';
+
+import Destination from './src/destination/Destination';
+import cultureList from './src/culture/cultureList';
+import cultureDetail from './src/culture/cultureDetail';
+import tryselect from './src/destination/tryselect';
+import Placedetail from './src/destination/Placedetail';
+
 import Community from './src/community/Community';
 import Detail from './src/community/Detail';
+
+import Mine from './src/mine/Mine';
+import Change from './src/mine/Change';
+import Editor from './src/mine/Editor';
 
 
 console.disableYellowBox = true;
@@ -104,17 +114,41 @@ const App = () => {
 									<Scene key='home' component={Home}/>
 								</Scene>
 								{/* 目的地 */}
-								<Scene key='goodsPage'
+								<Scene key='destination'
 									title='目的地'
 									icon={
 										({focused})=><Icon 
 											color={focused?'red':'grey'} 
-											name="menu"
+											name="appstore"
 										/>
 									}
 									hideNavBar
 								>
-									<Scene key="store" component={Store}/>
+									<Scene hideNavBar hideTabBar key="destinationIndex" component={Destination}/>
+									<Scene 
+									key="cultureList" 
+									title="风俗文化目录"
+									component={cultureList}
+									titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+									headerStyle={{backgroundColor:'#e3e3de'}}
+									navBarButtonColor='#fff'
+									/>
+									<Scene 
+									key="cultureDetail" 
+									title="风俗文化详情"
+									component={cultureDetail}
+									titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+									headerStyle={{backgroundColor:'#e3e3de'}}
+									navBarButtonColor='#fff'
+									/>
+									<Scene 
+									key="placeDetail" 
+									title="景点详情"
+									component={Placedetail}
+									titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+									headerStyle={{backgroundColor:'#e3e3de'}}
+									navBarButtonColor='#fff'
+									/>
 								</Scene>
 								{/* 社区 */}
 								<Scene 
@@ -127,9 +161,10 @@ const App = () => {
 											name='build'/>
 										}
 									title="社区"
+									
 								>
-									{/* <Scene key="personal" component={Personal}/> */}
-									<Scene key="community" component={Community} />
+									<Scene key="community" title='社区' component={Community} />
+									<Scene key='detail' title='发表动态' component={Detail} renderRightButton={<View></View>} backTitle='back'  />
 								</Scene>
 								{/* 我的 */}
 								<Scene 
@@ -143,7 +178,7 @@ const App = () => {
 										}
 									title="我的"
 								>
-									<Scene key="personal" component={Personal}/>
+									<Scene key="mine" component={Mine}/>
 								</Scene>
 							</Tabs>
 						</Scene>
@@ -152,7 +187,12 @@ const App = () => {
 				<Scene initial={!isLogin}  key="login" component={Login} />		
 				<Scene key="register" component={Register} />
 				<Scene key='release' component={Release} />
-				<Scene key='detail' component={Detail} />
+				
+
+				<Scene key="tryselect" component={tryselect}/>
+
+				<Scene key='change' component={Change} />
+				<Scene key='editor' component={Editor} />
 			</Modal>
 			</Overlay>
 		</Router>
