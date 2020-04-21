@@ -26,7 +26,7 @@ export default class Placedetail extends Component {
     constructor() {
         super();
         this.state = {
-            data: ""
+            data: ``
         }
     }
 
@@ -35,7 +35,7 @@ export default class Placedetail extends Component {
             jdtitle: '太和殿'
         })
             .then(res => {
-                console.log(res);
+                console.log(JSON.stringify(res.data));
                 this.setState({
                     data: res.data
                 })
