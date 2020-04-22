@@ -55,6 +55,7 @@ import cultureList from './src/culture/cultureList';
 import cultureDetail from './src/culture/cultureDetail';
 import tryselect from './src/destination/tryselect';
 import Placedetail from './src/destination/Placedetail';
+import Jdlist from './src/destination/Jdlist';
 
 
 console.disableYellowBox=true;//取消下面黄色的弹框提示
@@ -161,7 +162,11 @@ const App = () => {
               ({focused})=><Icon name="appstore" color={focused?'red':'#b4b4b4'}/>
             }
           >
-            <Scene hideNavBar hideTabBar key="destinationIndex" component={Destination}/>
+            <Scene 
+              hideNavBar
+              hideTabBar 
+              key="destinationIndex" 
+              component={Destination}/>
             <Scene 
               key="cultureList" 
               title="风俗文化目录"
@@ -186,11 +191,19 @@ const App = () => {
               headerStyle={{backgroundColor:'#e3e3de'}}
               navBarButtonColor='#fff'
             />
+            <Scene
+              key="placelist" 
+              title="景点列表"
+              component={Jdlist}
+              titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+              headerStyle={{backgroundColor:'#e3e3de'}}
+              navBarButtonColor='#fff'
+            />
           </Scene>
 
             <Scene
               key="tryselect"
-              component={tryselect}
+              component={Jdlist}
             />
 
           <Scene key="个人中心"

@@ -85,6 +85,10 @@ export default class Destination extends Component {
         };
     }
 
+    componentDidMount(){
+        console.log("11111111");
+    }
+
     render() {
         return (
             <ImageBackground
@@ -173,8 +177,7 @@ export default class Destination extends Component {
                             </List>
                         </View>
                     </Provider>
-
-
+                    
                     <View style={{
                         width: width,
                         // backgroundColor: 'pink',
@@ -193,7 +196,7 @@ export default class Destination extends Component {
                                 <TouchableOpacity
                                     key={idx}
                                     style={styles.placelist}
-                                    onPress={()=>Actions.placeDetail()}
+                                    onPress={()=>Actions.placelist()}
                                 >
                                     <ImageBackground
                                         style={[styles.citybg, styles.citybgp]}
