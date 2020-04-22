@@ -7,7 +7,16 @@ const styles=StyleSheet.create({
     top: {
         height: 62,
         width: '100%',
-        justifyContent: 'center',
+    },
+    back:{
+        paddingLeft:15,
+        paddingTop:20
+    },
+    title:{
+        fontSize:24,
+        position:'absolute',
+        top:20,
+        left:185
     },
     topbutton: {
         borderRadius: 15,
@@ -15,7 +24,7 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        top: 18,
+        top: 25,
         right: 40
     },
     content:{
@@ -51,10 +60,10 @@ export default class Detail extends Component {
             <View>
                 <ImageBackground source={require('../../assets/lj/ljdetbg.jpg')} style={{width:'100%',height:918}} >
                     <View style={styles.top} >
-                        <Text style={{fontSize:24,alignItems:'center'}} >
-                            <Icon name='left' onPress={Actions.pop} />
-                            <Text  >发表动态</Text>
-                        </Text>
+                        <View>
+                            <Icon name='left' onPress={Actions.pop} style={styles.back} />
+                            <Text style={styles.title} >发表动态</Text>
+                        </View>
                         <TouchableOpacity style={styles.topbutton}   >
                             <Text style={styles.topbtntext} style={{fontSize:16}} onPress={Actions.community} >发表</Text>
                         </TouchableOpacity>

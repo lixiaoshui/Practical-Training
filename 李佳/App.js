@@ -23,6 +23,7 @@ import Detail from './src/community/Detail';
 import Mine from './src/mine/Mine';
 import Change from './src/mine/Change';
 import Editor from './src/mine/Editor';
+import Dtcontent from './src/community/Dtcontent';
 
 
 console.disableYellowBox = true;
@@ -165,6 +166,7 @@ const App = () => {
 								>
 									<Scene key="community" title='社区' component={Community} />
 									<Scene key='detail' title='发表动态' component={Detail} renderRightButton={<View></View>} backTitle='back'  />
+									<Scene key='dtcontent' title='详情' component={Dtcontent} />
 								</Scene>
 								{/* 我的 */}
 								<Scene 
