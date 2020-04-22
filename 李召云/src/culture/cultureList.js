@@ -1,12 +1,137 @@
 import React, { Component } from 'react';
-import {View,Text} from 'react-native';
+import {
+    View, Text,
+    StyleSheet, ImageBackground,
+    Dimensions, TextInput,
+    ScrollView, TouchableOpacity, FlatList,
+} from "react-native";
+import { myFetch } from '../utils/index';
+import { Icon } from '@ant-design/react-native';
+import { Actions } from 'react-native-router-flux';
+
+const { width } = Dimensions.get('window');
+const s = width / 640;
+var wid=240*s;
+var high=300*s;
+
+var a = [
+    {
+        title: '那达慕',
+        picpath: require('../../assets/lzy/dtaofu4.jpg')
+    },
+    {
+        title: '汉服',
+        picpath: require('../../assets/lzy/dhanfu.png')
+    },
+    {
+        title: '福字',
+        picpath: require('../../assets/lzy/dfuzi.png')
+    },
+    {
+        title: '泰姬陵',
+        picpath: require('../../assets/lzy/dfuzi.png')
+    },
+    {
+        title: '汉字',
+        picpath: require('../../assets/lzy/dfuzi.png')
+    },
+    {
+        title: '饺子',
+        picpath: require('../../assets/lzy/dfuzi.png')
+    },
+]
 
 export default class cultureList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: a
+        }
+    }
+
+    componentDidMount() {
+        myFetch.get('/getculturelist', {
+            jdtitle: '太和殿'
+        })
+            .then(res => {
+                this.setState({
+                    data: res.data
+                }, () => {
+                    console.log(res.data);
+
+                })
+            })
+    }
+
     render() {
+
         return (
-           <View>
-               <Text>culture</Text>
-           </View>
+            <View>
+                <Text>文化列表</Text>
+                <View style={{
+                    // flexDirection:'row',
+                    // justifyContent:'space-evenly'
+                    alignItems:'center'
+                }}>
+                    <FlatList
+                        numColumns={2}
+                        data={this.state.list}
+
+                        renderItem={({ item, idx }) => (
+                            <TouchableOpacity
+                                key={idx}
+                                style={styles.placelist}
+                                onPress={() => { Actions.cultureDetail({ title: item.title }) }}
+                            >
+                                <ImageBackground
+                                    style={[styles.citybg, styles.citybgp]}
+                                    resizeMode="cover"
+                                    source={item.picpath}
+                                />
+                                <View style={[styles.coverbox, styles.citybg]}></View>
+                                <View style={styles.cityname}>
+                                    <Text style={styles.nametxt}>{item.title}</Text>
+                                </View>
+
+                            </TouchableOpacity>
+                        )}
+                    />
+                </View>
+            </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    placelist: {
+        width: wid,
+        height:high,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin:30*s,
+        backgroundColor:'pink',
+    },
+    citybg: {
+        width: wid,
+        height: high,
+    },
+    citybgp: {
+        position: 'relative'
+    },
+    coverbox: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        backgroundColor: '#a3a3a3',
+        opacity: 0.5
+    },
+    cityname: {
+        position: 'absolute',
+        top: high/2.5,
+        left: wid/2.5,
+        alignItems: 'center',
+    },
+    nametxt: {
+        fontSize: 17,
+        color: '#fff'
+    }
+})

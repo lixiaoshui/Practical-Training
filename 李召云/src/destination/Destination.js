@@ -59,12 +59,12 @@ const data = [
 
 const bj = [
     { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
-    { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dtiantan.png') },
-    { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dtiananmen.png') },
-    { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
-    { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
-    { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
-    { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
+    { title: '天坛', english: 'palace museum', picpath: require('../../assets/lzy/dtiantan.png') },
+    { title: '天安门', english: 'palace museum', picpath: require('../../assets/lzy/dtiananmen.png') },
+    { title: '颐和园', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
+    { title: '圆明园', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
+    { title: '什刹海', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
+    { title: '南锣鼓巷', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
     { title: '故宫', english: 'palace museum', picpath: require('../../assets/lzy/dgugong.png') },
 ]
 
@@ -143,7 +143,7 @@ export default class Destination extends Component {
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                         }}
-                                        onPress={() => Actions.cultureDetail()}
+                                        onPress={() => Actions.cultureDetail({title:item.title})}
                                     >
                                         <ImageBackground
                                             style={[styles.culturebg, styles.culturebgp]}
@@ -177,7 +177,6 @@ export default class Destination extends Component {
                             </List>
                         </View>
                     </Provider>
-                    
                     <View style={{
                         width: width,
                         // backgroundColor: 'pink',
@@ -196,7 +195,7 @@ export default class Destination extends Component {
                                 <TouchableOpacity
                                     key={idx}
                                     style={styles.placelist}
-                                    onPress={()=>Actions.placelist()}
+                                    onPress={()=>{Actions.placelist({title:item.title})}}
                                 >
                                     <ImageBackground
                                         style={[styles.citybg, styles.citybgp]}

@@ -164,7 +164,7 @@ const App = () => {
           >
             <Scene 
               hideNavBar
-              hideTabBar 
+              // hideTabBar 
               key="destinationIndex" 
               component={Destination}/>
             <Scene 
@@ -178,6 +178,8 @@ const App = () => {
             <Scene 
               key="cultureDetail" 
               title="风俗文化详情"
+              hideNavBar
+              hideTabBar
               component={cultureDetail}
               titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
               headerStyle={{backgroundColor:'#e3e3de'}}
@@ -186,6 +188,8 @@ const App = () => {
             <Scene 
               key="placeDetail" 
               title="景点详情"
+              hideNavBar
+              hideTabBar
               component={Placedetail}
               titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
               headerStyle={{backgroundColor:'#e3e3de'}}
@@ -194,6 +198,8 @@ const App = () => {
             <Scene
               key="placelist" 
               title="景点列表"
+              hideNavBar
+              hideTabBar
               component={Jdlist}
               titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
               headerStyle={{backgroundColor:'#e3e3de'}}
