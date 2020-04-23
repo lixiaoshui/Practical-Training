@@ -9,14 +9,42 @@ export default class Change extends Component {
     constructor() {
         super();
         this.state = {
-            name: '小知',
+            username: '小知',
             sex: '女',
             year: '80',
             intro: '大家好，我是小知'
         }
     }
+
+    // componentDidMount(){
+    //     fetch("/backlogin/backlist")
+    //     .then(res=>res.json())
+    //     .then(res=>{
+    //         console.log(res);
+    //         this.setState({
+    //             data:res.message
+    //         })
+    //     })
+    // }
+
+    // changeuser=()=>{
+    //     fetch('/backlogin/deluser',{
+    //         method: "POST",
+    //         mode : 'cors',
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded'
+    //         },
+    //         body: `busername=${this.state.username}`
+    //     })
+    //     .then(res=>res.json())
+    //     .then(res=>{
+    //         console.log(res);
+    //         Actions.change()
+    //     })
+    // }
+
     namehandle = (text)=>{
-        this.setState({name:text})
+        this.setState({username:text})
     }
     sexhandle = (text)=>{
         this.setState({sex:text})
@@ -30,7 +58,7 @@ export default class Change extends Component {
     render() {
         return (
             <View>
-                <ImageBackground style={styles.tabbar} source={require('../../assets/yjy/y2.jpg')}>
+                <ImageBackground style={styles.tabbar} source={require('../assets/yjy/y2.jpg')}>
                     <Button onPress={() => Actions.userPage()}>
                         <Icon color='black' name="left" size={30} style={{ marginLeft: 20 }} />
                     </Button>
@@ -51,7 +79,7 @@ export default class Change extends Component {
                             marginTop: 150
                         }}>
                         <Text style={{ fontSize: 25, marginBottom: 5 }}>用户名:</Text>
-                        <TextInput placeholder={this.state.name}
+                        <TextInput placeholder={this.state.username}
                             onChangeText={this.namehandle}
                             style={{ fontSize: 25, marginBottom: 5, marginLeft: 8 }}
                         />
@@ -116,7 +144,7 @@ export default class Change extends Component {
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}
-                        onPress={() => Actions.change()}
+                        // onPress={()=>this.changeuser()}
                     >
                         <Text style={{ fontSize: 25 }}>保存</Text>
                     </TouchableOpacity>

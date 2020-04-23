@@ -15,10 +15,20 @@ export default class Editor extends Component {
             intro:'大家好，我是小知'
         }
     }
+    // componentDidMount(){
+    //     fetch("/backlogin/backlist")
+    //     .then(res=>res.json())
+    //     .then(res=>{
+    //         console.log(res);
+    //         this.setState({
+    //             data:res.message
+    //         })
+    //     })
+    // }
     render() {
         return (
             <View>
-                <ImageBackground style={styles.tabbar} source={require('../../assets/yjy/y2.jpg')}>
+                <ImageBackground style={styles.tabbar} source={require('../assets/yjy/y2.jpg')}>
                     <Button onPress={() => Actions.userPage()}>
                         <Icon color='black' name="left" size={30} style={{ marginLeft: 20 }} />
                     </Button>
