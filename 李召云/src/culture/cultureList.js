@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View, Text,
     StyleSheet, ImageBackground,
-    Dimensions, TextInput,
+    Dimensions, TextInput, Image,
     ScrollView, TouchableOpacity, FlatList,
 } from "react-native";
 import { myFetch } from '../utils/index';
@@ -11,8 +11,8 @@ import { Actions } from 'react-native-router-flux';
 
 const { width } = Dimensions.get('window');
 const s = width / 640;
-var wid=240*s;
-var high=300*s;
+var wid = 240 * s;
+var high = 300 * s;
 
 var a = [
     {
@@ -66,12 +66,31 @@ export default class cultureList extends Component {
     render() {
 
         return (
-            <View>
-                <Text>文化列表</Text>
+            <ImageBackground
+                source={require('../../assets/lzy/p1.jpg')}
+                style={styles.showbody}
+            >
+                <ImageBackground
+                    resizeMode='cover'
+                    source={require("../../assets/lzy/lzy1.jpg")}
+                    style={styles.tabbar}
+                >
+                    <TouchableOpacity
+                        style={styles.backicon}
+                        onPress={() => Actions.pop()}
+                    >
+                        <Image
+                            style={styles.backicon}
+                            resizeMode='contain'
+                            source={require("../../assets/lzy/dfanhui.png")}
+                        />
+                    </TouchableOpacity>
+                    <Text style={styles.title}>风俗文化</Text>
+                </ImageBackground>
                 <View style={{
                     // flexDirection:'row',
                     // justifyContent:'space-evenly'
-                    alignItems:'center'
+                    alignItems: 'center'
                 }}>
                     <FlatList
                         numColumns={2}
@@ -97,18 +116,21 @@ export default class cultureList extends Component {
                         )}
                     />
                 </View>
-            </View>
+            </ImageBackground>
         )
     }
 }
 const styles = StyleSheet.create({
+    showbody: {
+        flex: 1,
+    },
     placelist: {
         width: wid,
-        height:high,
+        height: high,
         justifyContent: 'center',
         alignItems: 'center',
-        margin:30*s,
-        backgroundColor:'pink',
+        margin: 30 * s,
+        backgroundColor: 'pink',
     },
     citybg: {
         width: wid,
@@ -126,12 +148,32 @@ const styles = StyleSheet.create({
     },
     cityname: {
         position: 'absolute',
-        top: high/2.5,
-        left: wid/2.5,
+        top: high / 2.5,
+        left: wid / 2.5,
         alignItems: 'center',
     },
     nametxt: {
         fontSize: 17,
         color: '#fff'
-    }
+    },
+    tabbar: {
+        width: width,
+        height: 85 * s,
+        flexDirection: 'row',
+        backgroundColor: '#B0C4DE',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+    },
+    backicon: {
+        width: 45 * s,
+        height: 45 * s,
+        position: 'absolute',
+        left: 10 * s,
+        color: '#20B2AA'
+    },
+    title: {
+        fontSize: 21,
+        // color: 'white'
+    },
 })

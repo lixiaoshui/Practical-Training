@@ -10,6 +10,7 @@ import { myFetch } from '../utils/index';
 import { Actions } from 'react-native-router-flux';
 import { Icon } from '@ant-design/react-native';
 
+
 const { width } = Dimensions.get('window');
 const s = width / 640;
 

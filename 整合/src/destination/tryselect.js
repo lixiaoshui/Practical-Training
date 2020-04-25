@@ -8,23 +8,7 @@ import {
 import { Icon, List, Picker, Provider } from '@ant-design/react-native';
 import { Actions } from "react-native-router-flux";
 import { WebView } from 'react-native-webview';
-// const CustomChildren = props => (
-//     <TouchableOpacity onPress={props.onPress}>
-//         <View
-//             style={{
-//                 height: 36,
-//                 paddingLeft: 15,
-//                 flexDirection: 'row',
-//                 alignItems: 'center',
-//             }}
-//         >
-//             <Text style={{ flex: 1 }}>{props.children}</Text>
-//             <Text style={{ textAlign: 'right', color: '#888', marginRight: 15 }}>
-//                 {props.extra}
-//             </Text>
-//         </View>
-//     </TouchableOpacity>
-// );
+
 
 const data = [
     {

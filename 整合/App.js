@@ -136,9 +136,7 @@ const App = () => {
 										key="cultureList" 
 										title="风俗文化目录"
 										component={cultureList}
-										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-										headerStyle={{backgroundColor:'#e3e3de'}}
-										navBarButtonColor='#fff'
+										hideNavBar
 									/>
 									<Scene 
 										key="cultureDetail" 
@@ -146,9 +144,9 @@ const App = () => {
 										hideNavBar
               							hideTabBar
 										component={cultureDetail}
-										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-										headerStyle={{backgroundColor:'#e3e3de'}}
-										navBarButtonColor='#fff'
+										// titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										// headerStyle={{backgroundColor:'#e3e3de'}}
+										// navBarButtonColor='#fff'
 									/>
 									<Scene 
 										key="placeDetail" 
@@ -156,9 +154,9 @@ const App = () => {
 										hideNavBar
               							hideTabBar
 										component={Placedetail}
-										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-										headerStyle={{backgroundColor:'#e3e3de'}}
-										navBarButtonColor='#fff'
+										// titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										// headerStyle={{backgroundColor:'#e3e3de'}}
+										// navBarButtonColor='#fff'
 									/>
 									<Scene
 										key="placelist" 
@@ -166,9 +164,9 @@ const App = () => {
 										hideNavBar
 										hideTabBar
 										component={Jdlist}
-										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-										headerStyle={{backgroundColor:'#e3e3de'}}
-										navBarButtonColor='#fff'
+										// titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										// headerStyle={{backgroundColor:'#e3e3de'}}
+										// navBarButtonColor='#fff'
 									/>
 								</Scene>
 								{/* 社区 */}

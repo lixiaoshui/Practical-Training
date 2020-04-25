@@ -6,8 +6,8 @@ import {
     ScrollView, TouchableOpacity, FlatList,
 } from "react-native";
 import { myFetch } from '../utils/index';
-import HTML from "react-native-render-html";
-import HTMLView from 'react-native-htmlview'
+// import HTML from "react-native-render-html";
+// import HTMLView from 'react-native-htmlview';
 import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
 import { WebView } from 'react-native-webview';

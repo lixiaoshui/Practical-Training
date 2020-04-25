@@ -58,6 +58,15 @@ import Placedetail from './src/destination/Placedetail';
 import Jdlist from './src/destination/Jdlist';
 
 
+import Community from './src/community/Community';
+import Detail from './src/community/Detail';
+import Dtcontent from './src/community/Dtcontent';
+
+import Mine from './src/mine/Mine';
+import Change from './src/mine/Change';
+import Editor from './src/mine/Editor';
+import Minedt from './src/mine/Minedt';
+
 console.disableYellowBox = true;//取消下面黄色的弹框提示
 
 
@@ -143,23 +152,37 @@ const App = () => {
                 activeTintColor="red"
                 inactiveTintColor="#b4b4b4"
               >
-                <Scene key="homePage"
-                  hideNavBar
-                  title="首页"
+                {/* <Scene key="homePage"
+            hideNavBar
+            title="首页"
+            icon={
+              ({focused})=><Icon name="home" color={focused?'red':'#b4b4b4'}/>
+            }
+          > */}
+                <Scene key='homePage'
+                  title='首页'
                   icon={
-                    ({ focused }) => <Icon name="home" color={focused ? 'red' : '#b4b4b4'} />
+                    ({ focused }) => <Icon
+                      color={focused ? 'red' : 'grey'}
+                      name="home"
+                    />
                   }
+                  hideNavBar
                 >
                   {/* <Scene key="indexye" component={Shouye}/> */}
                   <Scene key="home" component={Home} />
 
                 </Scene>
 
+
                 <Scene key="destination"
                   // hideNavBar
                   title="目的地"
                   icon={
-                    ({ focused }) => <Icon name="appstore" color={focused ? 'red' : '#b4b4b4'} />
+                    ({ focused }) => <Icon
+                      name="appstore"
+                      color={focused ? 'red' : '#b4b4b4'}
+                    />
                   }
                 >
                   <Scene
@@ -171,9 +194,10 @@ const App = () => {
                     key="cultureList"
                     title="风俗文化目录"
                     component={cultureList}
-                    titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
-                    headerStyle={{ backgroundColor: '#e3e3de' }}
-                    navBarButtonColor='#fff'
+                    hideNavBar
+                  // titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+                  // headerStyle={{backgroundColor:'#e3e3de'}}
+                  // navBarButtonColor='#fff'
                   />
                   <Scene
                     key="cultureDetail"
@@ -181,9 +205,9 @@ const App = () => {
                     hideNavBar
                     hideTabBar
                     component={cultureDetail}
-                    titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
-                    headerStyle={{ backgroundColor: '#e3e3de' }}
-                    navBarButtonColor='#fff'
+                    // titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
+                    // headerStyle={{ backgroundColor: '#e3e3de' }}
+                    // navBarButtonColor='#fff'
                   />
                   <Scene
                     key="placeDetail"
@@ -201,23 +225,36 @@ const App = () => {
                     hideNavBar
                     hideTabBar
                     component={Jdlist}
-                    titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
-                    headerStyle={{ backgroundColor: '#e3e3de' }}
-                    navBarButtonColor='#fff'
+                    // titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
+                    // headerStyle={{ backgroundColor: '#e3e3de' }}
+                    // navBarButtonColor='#fff'
                   />
                 </Scene>
 
+                {/* 社区 */}
+                <Scene
+                  hideNavBar
+                  key='communityPage'
+                  hideDrawerButton
+                  icon={({ focused }) =>
+                    <Icon
+                      color={focused ? 'red' : 'grey'}
+                      name='build' />
+                  }
+                  title="社区"
+                >
+                  <Scene key="community" component={Community} />
+                </Scene>
                 <Scene
                   key="tryselect"
-                  component={Jdlist}
+                  component={tryselect}
                 />
 
-                <Scene key="个人中心"
+                {/* <Scene key="个人中心"
                   icon={
                     ({ focused }) => <Icon name="user" color={focused ? 'red' : '#b4b4b4'} />
                   }
                 >
-                  {/* <Scene hideNavBar key="mine" component={Personal}/> */}
                   <Scene hideNavBar key="mine" component={User} />
                   <Scene
                     key='mypublish'
@@ -228,16 +265,39 @@ const App = () => {
                     headerStyle={{ backgroundColor: '#f23030' }}
                     navBarButtonColor='#fff'
                   />
-                </Scene>
-
+                </Scene> */}
+                {/* 我的 */}
+								<Scene 
+									hideNavBar
+									key='userPage'
+									hideDrawerButton
+									icon={({focused})=>
+										<Icon 
+											color={focused?'red':'grey'} 
+											name='user'/>
+										}
+									title="我的"
+								>
+									<Scene key="mine" component={Mine}/>
+								</Scene>
 
               </Tabs>
             </Scene>
             {/* </Drawer> */}
 
           </Lightbox>
-          <Scene initial={!isLogin} key="login" component={Login} />
-          <Scene key='join' component={Register} />
+          {/* <Scene initial={!isLogin} key="login" component={Login} />
+          <Scene key='join' component={Register} /> */}
+          <Scene initial={!isLogin}  key="login" component={Login} />		
+				<Scene key="register" component={Register} />
+				<Scene key='detail' component={Detail} />
+
+				<Scene key="tryselect" component={tryselect}/>
+				<Scene key='dtcontent' component={Dtcontent} />
+
+				<Scene key='change' component={Change} />
+				<Scene key='editor' component={Editor} />
+				<Scene key='minedt' component={Minedt} />
         </Modal>
       </Router>
 
