@@ -1,102 +1,37 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ScrollView, StyleSheet, TouchableOpacity, ImageBackground,Dimensions } from 'react-native'
+import {
+    Text,
+    View,
+    ScrollView,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions,
+    ImageBackground,
+    Image
+} from 'react-native'
 import { Actions } from 'react-native-router-flux';
-import { Button } from '@ant-design/react-native';
 
 const { height, width } = Dimensions.get('window')
-const styles = StyleSheet.create({
-    topbg: {
-        width: '100%',
-        height: 62
-    },
-    top: {
-        height: 62,
-        width: '100%'
-    },
-    toptext: {
-        height: 62,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    topbutton: {
-        width: 30,
-        height: 30,
-        borderWidth: 1,
-        borderRadius: 15,
-        borderColor: '#ccc',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        top: 18,
-        right: 40
-    },
-    topbtntext: {
-        fontSize: 22
-    },
-    body: {
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // height:400,
-        // borderWidth:1
-    },
-    con: {
-        width: 420,
-        height: 200,
-        marginTop: 30,
-        borderWidth: 1,
-        borderColor: 'grey',
-        borderRadius: 10,
-        borderStyle: 'dashed'
-    },
-    toux: {
-        width: 50,
-        height: 50,
-        borderStyle: 'dotted',
-        borderWidth: 1,
-        borderRadius: 25,
-        marginLeft: 30,
-        marginTop: 20
-    },
-    adminname: {
-        fontSize: 20,
-        position: 'absolute',
-        top: 22,
-        left: 100
-    },
-    admintime: {
-        position: 'absolute',
-        top: 50,
-        left: 100
-    },
-    admincon: {
-        fontSize: 15,
-        paddingLeft: 18,
-        paddingTop: 17,
-        paddingRight: 13,
-        lineHeight: 25
-    }
-})
 
-export default class Community extends Component {
+
+export default class Minedt extends Component {
     render() {
         return (
             <View>
                 {/* 头部 */}
-                <ImageBackground source={require('../../assets/lj/ljtopbg.jpg')} style={styles.topbg} >
+                <ImageBackground source={require('../../assets/yjy/ytop.jpg')} style={styles.topbg} >
                     <View style={styles.top} >
                         <View style={styles.toptext}>
-                            <Text style={{ fontSize: 24 }} >社区</Text>
+                            <Text style={{ fontSize: 30 }} >我的动态</Text>
                         </View>
-                        <TouchableOpacity style={styles.topbutton} onPress={Actions.detail}  >
+                        <TouchableOpacity style={styles.topbutton}
+                        // onclick={Actions.detail()} 
+                        >
                             <Text style={styles.topbtntext} >+</Text>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>
-                {/* body */}
-                <ImageBackground source={require('../../assets/lj/ljbodybg.jpg')} style={{ width: '100%', height: height-62 }} >
+                <ImageBackground source={require('../../assets/yjy/ybg.jpg')} style={{ width: '100%', height: height * 0.9 }} >
                     <ScrollView>
                         <View style={styles.body} >
                             <TouchableOpacity onPress={Actions.dtcontent} >
@@ -167,3 +102,81 @@ export default class Community extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    topbg: {
+        width: '100%',
+        height: height * 0.1
+    },
+    top: {
+        height: height * 0.1,
+        width: '100%'
+
+    },
+    toptext: {
+        height: height * 0.1,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    topbutton: {
+        width: 40,
+        height: 40,
+        borderWidth: 2,
+        borderRadius: 20,
+        borderColor: '#ccc',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 22,
+        right: 40
+    },
+    topbtntext: {
+        fontSize: 22
+    },
+    body: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // height:400,
+        // borderWidth:1
+    },
+    con: {
+        width: 420,
+        height: 200,
+        marginTop: 30,
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderRadius: 10,
+        borderStyle: 'dashed'
+    },
+    toux: {
+        width: 50,
+        height: 50,
+        borderStyle: 'dotted',
+        borderWidth: 1,
+        borderRadius: 25,
+        marginLeft: 30,
+        marginTop: 20
+    },
+    adminname: {
+        fontSize: 20,
+        position: 'absolute',
+        top: 22,
+        left: 100
+    },
+    admintime: {
+        position: 'absolute',
+        top: 50,
+        left: 100
+    },
+    admincon: {
+        fontSize: 15,
+        paddingLeft: 18,
+        paddingTop: 17,
+        paddingRight: 13,
+        lineHeight: 25
+    }
+})

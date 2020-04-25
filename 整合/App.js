@@ -4,7 +4,7 @@ import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal, Actions} from 're
 import { Icon } from '@ant-design/react-native';
 import SplashScreen from 'react-native-splash-screen';
 
-import Release from './component/Release';
+
 import Login from './src/common/Login';
 import SwiperPage from './src/common/SwiperPage';
 import Register from './src/common/Register';
@@ -19,10 +19,12 @@ import Placedetail from './src/destination/Placedetail';
 
 import Community from './src/community/Community';
 import Detail from './src/community/Detail';
+import Dtcontent from './src/community/Dtcontent';
 
 import Mine from './src/mine/Mine';
 import Change from './src/mine/Change';
 import Editor from './src/mine/Editor';
+import Minedt from './src/mine/Minedt';
 
 
 console.disableYellowBox = true;
@@ -184,13 +186,14 @@ const App = () => {
 				</Lightbox>
 				<Scene initial={!isLogin}  key="login" component={Login} />		
 				<Scene key="register" component={Register} />
-				<Scene key='release' component={Release} />
 				<Scene key='detail' component={Detail} />
 
 				<Scene key="tryselect" component={tryselect}/>
+				<Scene key='dtcontent' component={Dtcontent} />
 
 				<Scene key='change' component={Change} />
 				<Scene key='editor' component={Editor} />
+				<Scene key='minedt' component={Minedt} />
 			</Modal>
 			</Overlay>
 		</Router>
