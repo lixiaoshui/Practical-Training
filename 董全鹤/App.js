@@ -7,9 +7,13 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Hc from './src/home/Hc'
 import Home from './src/home/Home'
 import Article from "./src/home/Article"
-// import Pintu from './src/game/Pintu'
-import Obj from './src/game/Obj'
-// import Game from './src/game/Game'
+import Qvshui from './src/game/Qvshui'
+import Game from './src/game/Game'
+import Essay from './src/home/Essay'
+// import ViewProject from './src/home/ViewProject'
+// import Essay1 from './src/home/essay/Essay1'
+// import Essay2 from './src/home/essay/Essay2'
+// import Essay3 from './src/home/essay/Essay3'
 
 let now = 0;
 const App =() => {
@@ -82,7 +86,7 @@ const App =() => {
 							/>
 						}
 					>
-						<Scene key="pintu" component={Obj}/>
+						<Scene key="game" component={Game}/>
 					</Scene>
 					{/* 我的 */}
 					<Scene 
@@ -98,14 +102,19 @@ const App =() => {
 							/>
 						}
 					>
-						<Scene key="asdf" component={Obj}/>
+						{/* <Scene key="ViewProject" component={ViewProject}/> */}
+						<Scene key="essay" component={Essay}/>
+
 					</Scene>
 				</Tabs>
 			</Scene>
 		</Lightbox>
+
 		<Scene key="article" component={Article}/>
-		{/* <Scene key="game" component={Game} /> */}
-		{/* <Scene key='Pintu' component={Pintu}/>    */}
+		<Scene key="qvshui" component={Qvshui}/>
+		{/* <Scene key="essay1" component={Essay1}/>
+		<Scene key="essay2" component={Essay2}/>
+		<Scene key="essay3" component={Essay3}/> */}
 	</Modal>
 	</Router>
   );

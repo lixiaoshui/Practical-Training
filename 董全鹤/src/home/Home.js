@@ -52,7 +52,7 @@ render(){
     </Carousel>
     <View style={styles.gg}>
       <ImageBackground  source={require("../../assets/dqh/dmaoxian.jpg")} style={styles.gugong} >
-      <Text  style={styles.ggp} onPress={()=>Actions.game()}>故宫大冒险：让你在游戏中了解故宫</Text>
+      <Text  style={styles.ggp} onPress={()=>Actions.obj()}>故宫大冒险：让你在游戏中了解故宫</Text>
       </ImageBackground>
     </View>
     <View style={styles.articles}>
@@ -64,7 +64,7 @@ render(){
               <View style={styles.flat}>
                 <View>
                   <Text 
-                    style={{fontSize:16,marginRight:30*w,width:200*w}}
+                    style={{fontSize:16,marginRight:30*w,width:200*w}} onPress={()=>Actions.essay()}
                     >{item.tit}</Text>
                 </View>
                 <View >
