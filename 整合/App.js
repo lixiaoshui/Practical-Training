@@ -14,8 +14,9 @@ import Home from './src/home/Home';
 import Destination from './src/destination/Destination';
 import cultureList from './src/culture/cultureList';
 import cultureDetail from './src/culture/cultureDetail';
-import tryselect from './src/destination/tryselect';
+// import tryselect from './src/destination/tryselect';
 import Placedetail from './src/destination/Placedetail';
+import Jdlist from './src/destination/Jdlist';
 
 import Community from './src/community/Community';
 import Detail from './src/community/Detail';
@@ -124,32 +125,50 @@ const App = () => {
 											name="appstore"
 										/>
 									}
-									hideNavBar
+									// hideNavBar
 								>
-									<Scene hideNavBar hideTabBar key="destinationIndex" component={Destination}/>
 									<Scene 
-									key="cultureList" 
-									title="风俗文化目录"
-									component={cultureList}
-									titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-									headerStyle={{backgroundColor:'#e3e3de'}}
-									navBarButtonColor='#fff'
+										hideNavBar 
+										hideTabBar 
+										key="destinationIndex" 
+										component={Destination}/>
+									<Scene 
+										key="cultureList" 
+										title="风俗文化目录"
+										component={cultureList}
+										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										headerStyle={{backgroundColor:'#e3e3de'}}
+										navBarButtonColor='#fff'
 									/>
 									<Scene 
-									key="cultureDetail" 
-									title="风俗文化详情"
-									component={cultureDetail}
-									titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-									headerStyle={{backgroundColor:'#e3e3de'}}
-									navBarButtonColor='#fff'
+										key="cultureDetail" 
+										title="风俗文化详情"
+										hideNavBar
+              							hideTabBar
+										component={cultureDetail}
+										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										headerStyle={{backgroundColor:'#e3e3de'}}
+										navBarButtonColor='#fff'
 									/>
 									<Scene 
-									key="placeDetail" 
-									title="景点详情"
-									component={Placedetail}
-									titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-									headerStyle={{backgroundColor:'#e3e3de'}}
-									navBarButtonColor='#fff'
+										key="placeDetail" 
+										title="景点详情"
+										hideNavBar
+              							hideTabBar
+										component={Placedetail}
+										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										headerStyle={{backgroundColor:'#e3e3de'}}
+										navBarButtonColor='#fff'
+									/>
+									<Scene
+										key="placelist" 
+										title="景点列表"
+										hideNavBar
+										hideTabBar
+										component={Jdlist}
+										titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+										headerStyle={{backgroundColor:'#e3e3de'}}
+										navBarButtonColor='#fff'
 									/>
 								</Scene>
 								{/* 社区 */}

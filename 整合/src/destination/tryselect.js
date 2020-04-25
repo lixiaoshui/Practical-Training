@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { Icon, List, Picker, Provider } from '@ant-design/react-native';
 import { Actions } from "react-native-router-flux";
-
+import { WebView } from 'react-native-webview';
 // const CustomChildren = props => (
 //     <TouchableOpacity onPress={props.onPress}>
 //         <View
@@ -75,26 +75,30 @@ export default class tryselect extends Component {
     }
     render() {
         return (
-            <Provider>
-                <View style={{ marginTop: 30 }}>
-                    <List>
-                        <Picker
-                            data={data}
-                            cols={1}
-                            value={this.state.value}
-                            onChange={this.onChange}
-                        >
-                            <List.Item arrow="horizontal" onPress={this.onPress}>
-                                切换城市
-                            </List.Item>
-                        </Picker>
+            // <Provider>
+            //     <View style={{ marginTop: 30 }}>
+            //         <List>
+            //             <Picker
+            //                 data={data}
+            //                 cols={1}
+            //                 value={this.state.value}
+            //                 onChange={this.onChange}
+            //             >
+            //                 <List.Item arrow="horizontal" onPress={this.onPress}>
+            //                     切换城市
+            //                 </List.Item>
+            //             </Picker>
 
                         
-                    </List>
-                </View>
-                <Text>{this.state.value}</Text>
-                <Text>{'nn'+this.state.name}</Text>
-            </Provider>
+            //         </List>
+            //     </View>
+            //     <Text>{this.state.value}</Text>
+            //     <Text>{'nn'+this.state.name}</Text>
+            // </Provider> 
+            <View style={{flex:1}}>
+                <WebView source={{ uri: 'https://lizhaoyun.github.io/zhixinghtml/html/福字.html' }} />
+
+            </View>
         )
     }
 }
