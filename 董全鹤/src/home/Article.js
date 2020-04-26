@@ -1,31 +1,45 @@
 import React ,{Component}from 'react';
 import {SafeAreaView,StyleSheet, View,FlatList,
-  Text,Image,StatusBar, TextInput,Dimensions, ScrollView,ImageBackground} from 'react-native';
+  Text,Image,StatusBar, TextInput,Dimensions,TouchableOpacity, ScrollView,ImageBackground} from 'react-native';
 import { Carousel, Button } from '@ant-design/react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions } from 'react-native-router-flux';
+import { myFetch } from '../utils/index';
 const {width} = Dimensions.get("window");
 const {height} = Dimensions.get("window");
 const w=width/640;
 const article =[
     {
-      id:1,
       img:require("../../assets/dqh/article1.png"),
-      tit:"故宫的大怪兽：让你看到一个不一样的故宫文化介绍",
+      tit:"故宫的大怪兽：让你看到一个不一样的故宫",
+      title:"故宫的大怪兽",
     },
     {
-      id:2,
-      img:require("../../assets/dqh/article2.png"),
-      tit:"老北京的传说:太和殿的龙没法儿数",
-    },
-    {
-      id:3,
       img:require("../../assets/dqh/article3.png"),
-      tit:"北新桥的故事:欣赏各地景色，提升文化素养",
+      tit:"北新桥的故事：欣赏各地景色，提升文化素养",
+      title:"北新桥的故事",
+    },
+    {
+      img:require("../../assets/dqh/article2.png"),
+      tit:"老北京的传说：太和殿的龙没法儿数",
+      title:"老北京的传说",
     },
     
   ]
 export default class Article extends Component{
+  componentDidMount() {
+    myFetch.get('/getArticlelist', {
+        jdtitle: '太和殿'
+    })
+        .then(res => {
+            this.setState({
+                data: res.data
+            }, () => {
+                console.log(res.data);
+
+            })
+        })
+}
 render(){
   return (
     <View>
@@ -38,24 +52,23 @@ render(){
         </ImageBackground>
         <ScrollView>
         <ImageBackground source={require("../../assets/dqh/homebcc.png")} style={{width: '100%',height:height*0.9}}>
-        <FlatList 
-            data={article}
-            renderItem={({item})=>(
-                <View style={styles.flat} onPress={()=>Actions.essay1()}>
-                    <View>
+        {
+            article.map((item) => (
+              <View style={styles.flat} >
+                  <View>
                       <Text 
-                          style={{fontSize:16,marginRight:30*w,width:200*w}} onPress={()=>Actions.essay2()}
+                          style={{fontSize:16,marginRight:30*w,width:200*w}} 
+                          onPress={() => Actions.articleDetail({title:item.title})}
                           >{item.tit}</Text>
-                    </View>
-                    <View >
+                  </View>
+                  <View >
                       <Image 
                           style={styles.flimg}
                           source={item.img}/>
-                    </View>
-                </View>
-            )}
-          />
-    
+                  </View>
+              </View>
+          ))
+        }
         </ImageBackground>
         </ScrollView>
     </View>
@@ -95,6 +108,83 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'center',
     },
+    showbody: {
+      flex: 1,
+  },
+  searchbar: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+  search: {
+      width: 450 *w,
+      height: 50 *w,
+      paddingLeft: 30 *w,
+      borderWidth: 2 *w,
+      borderColor: "#999999",
+      borderRadius: 25 *w,
+  },
+  icon: {
+      position: "absolute",
+      top: 8 *w,
+      right: 110 *w
+  },
+  // 风俗文化
+  titlebar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingLeft: 20 *w
+  },
+  name: {
+      fontSize: 22,
+  },
+  culshow: {
+      width: width,
+      flexDirection: "row",
+      justifyContent: 'space-evenly',
+      marginTop: 25 *w,
+  },
+  Articlebg: {
+      width: 180 *w,
+      height: 230 *w,
+  },
+  Articlebgp: {
+      position: "relative"
+  },
+  Articlename: {
+      fontSize: 20,
+      position: "absolute",
+      top: 100 *w,
+      left: 60 *w
+  },
+  // 景点
+  placelist: {
+      margin: 30 *w,
+  },
+  citybg: {
+      width: 250 *w,
+      height: 150 *w,
+  },
+  citybgp: {
+      position: 'relative'
+  },
+  coverbox: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      backgroundColor: '#a3a3a3',
+      opacity: 0.5
+  },
+  cityname: {
+      position: 'absolute',
+      top: 43 *w,
+      left: 40 *w,
+      alignItems: 'center',
+  },
+  nametxt: {
+      fontSize: 17,
+      color:'#fff'
+  }
   })
   
   
