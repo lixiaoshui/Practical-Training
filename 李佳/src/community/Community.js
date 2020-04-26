@@ -80,6 +80,40 @@ const styles = StyleSheet.create({
 })
 
 export default class Community extends Component {
+    constructor(){
+        super();
+        this.state={
+            data:[]
+        }
+    }
+    componentDidMount(){
+        fetch('/dt/list')
+        .then(res=>res.json())
+        .then(res=>{
+            console.log(res);
+            this.setState({
+                data:res.message
+            },()=>{
+                console.log(this.state.data)
+            })
+        })
+    }
+    componentDidUpdate(prevProps,prevState){
+        if(prevState.data==this.state.data){
+            console.log(prevState.data==this.state.data)
+            fetch('/dt/list')
+            .then(res=>res.json())
+            .then(res=>{
+                console.log(res);
+                this.setState({
+                    data:res.message
+                },()=>{
+                    console.log(this.state.data);
+                    console.log(typeof(this.state.data[0].createtime));
+                })
+            })
+        }
+    }
     render() {
         return (
             <View>
@@ -98,7 +132,22 @@ export default class Community extends Component {
                 <ImageBackground source={require('../../assets/lj/ljbodybg.jpg')} style={{ width: '100%', height: 718 }} >
                     <ScrollView>
                         <View style={styles.body} >
-                            <TouchableOpacity onPress={Actions.dtcontent} >
+                            {
+                                this.state.data.map((item,idx)=>{
+                                    return <TouchableOpacity onPress={Actions.dtcontent} >
+                                        <View style={styles.con} >
+                                            <Image style={styles.toux} source={item.imgpath} />
+                                            <Text style={styles.adminname} > {item.username} </Text>
+                                            <Text style={styles.admintime} > {item.createtime} </Text>
+                                            <Text style={styles.admincon} > {item.content} </Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                })
+                            }
+
+
+
+                            {/* <TouchableOpacity onPress={Actions.dtcontent} >
                                 <View style={styles.con}  >
                                     <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
                                     <Text style={styles.adminname} >小知</Text>
@@ -157,7 +206,7 @@ export default class Community extends Component {
                                         这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
                                         </Text>
                                 </View>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
                         </View>
                     </ScrollView>

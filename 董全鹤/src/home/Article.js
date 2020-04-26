@@ -9,16 +9,19 @@ const {height} = Dimensions.get("window");
 const w=width/640;
 const article =[
     {
+      id:1,
       img:require("../../assets/dqh/article1.png"),
       tit:"故宫的大怪兽：让你看到一个不一样的故宫文化介绍",
     },
     {
+      id:2,
       img:require("../../assets/dqh/article2.png"),
       tit:"老北京的传说:太和殿的龙没法儿数",
     },
     {
+      id:3,
       img:require("../../assets/dqh/article3.png"),
-      tit:"景色如画：        欣赏各地景色，提升文化素养",
+      tit:"北新桥的故事:欣赏各地景色，提升文化素养",
     },
     
   ]
@@ -34,20 +37,20 @@ render(){
             </View>
         </ImageBackground>
         <ScrollView>
-        <ImageBackground source={require("../../assets/dqh/homebcc.png")} style={{width: '100%',height:height}}>
+        <ImageBackground source={require("../../assets/dqh/homebcc.png")} style={{width: '100%',height:height*0.9}}>
         <FlatList 
             data={article}
             renderItem={({item})=>(
-                <View style={styles.flat}>
+                <View style={styles.flat} onPress={()=>Actions.essay1()}>
                     <View>
-                    <Text 
-                        style={{fontSize:16,marginRight:30*w,width:200*w}}
-                        >{item.tit}</Text>
+                      <Text 
+                          style={{fontSize:16,marginRight:30*w,width:200*w}} onPress={()=>Actions.essay2()}
+                          >{item.tit}</Text>
                     </View>
                     <View >
-                    <Image 
-                        style={styles.flimg}
-                        source={item.img}/>
+                      <Image 
+                          style={styles.flimg}
+                          source={item.img}/>
                     </View>
                 </View>
             )}

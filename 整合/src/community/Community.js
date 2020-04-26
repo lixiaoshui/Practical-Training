@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import { Text, View, Image, ScrollView, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
+=======
+import { Text, View, Image, ScrollView, StyleSheet, TouchableOpacity, ImageBackground,Dimensions } from 'react-native'
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
 import { Actions } from 'react-native-router-flux';
 import { Button } from '@ant-design/react-native';
 
+const { height, width } = Dimensions.get('window')
 const styles = StyleSheet.create({
     topbg: {
         width: '100%',
@@ -95,7 +100,11 @@ export default class Community extends Component {
                     </View>
                 </ImageBackground>
                 {/* body */}
+<<<<<<< HEAD
                 <ImageBackground source={require('../../assets/lj/ljbodybg.jpg')} style={{ width: '100%', height: 718 }} >
+=======
+                <ImageBackground source={require('../../assets/lj/ljbodybg.jpg')} style={{ width: '100%', height: height-62 }} >
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
                     <ScrollView>
                         <View style={styles.body} >
                             <TouchableOpacity onPress={Actions.dtcontent} >

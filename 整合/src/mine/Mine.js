@@ -104,6 +104,7 @@ export default class Mine extends Component {
                 <View style={styles.tabbar}>
                     <Text style={styles.title}>我的主页</Text>
                 </View>
+<<<<<<< HEAD
                 <ImageBackground style={{ width: '100%', height: height * 0.9, position: 'relative', alignItems: 'center' }} source={require('../assets/yjy/y1.jpg')}>
                     <View style={styles.main}>
                         <Text style={{ fontSize: 25, textAlign: 'center', marginTop: 100 }}>小知</Text>
@@ -111,6 +112,15 @@ export default class Mine extends Component {
                         <Button style={styles.trends}>我的动态</Button>
                         <Button style={styles.trends}>编辑资料</Button>
                         <Button style={styles.trends} onPress={this.exit}>退出登录</Button>
+=======
+                <ImageBackground style={{ width: '100%', height: height * 0.9, position: 'relative',alignItems:'center' }} source={require('../../assets/yjy/y1.jpg')}>
+                    <View style={styles.main}>
+                        <Text style={{ fontSize: 25, textAlign: 'center', marginTop: 100 }}>小知</Text>
+                        <Button style={styles.sto}>我的收藏</Button>
+                        <Button style={styles.trends}  onPress={()=>Actions.minedt()}>我的动态</Button>
+                        <Button style={styles.trends} onPress={() => Actions.editor()}>编辑资料</Button>
+                        <Button style={styles.trends}>退出登录</Button>
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
                     </View>
                     <Button onPress={() => { this.takephoto() }} style={{ bottom: 480, position: 'absolute' }}>
                         <Image

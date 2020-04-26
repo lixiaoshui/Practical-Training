@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import {
     View, Text,
     StyleSheet, ImageBackground,
+<<<<<<< HEAD
     Dimensions, TextInput,
+=======
+    Dimensions, TextInput, Image,
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
     ScrollView, TouchableOpacity, FlatList,
 } from "react-native";
 import { myFetch } from '../utils/index';
 import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
 
+<<<<<<< HEAD
 const { width } = Dimensions.get('window');
 const s = width / 640;
 var wid=240*s;
 var high=300*s;
+=======
+
+const { width } = Dimensions.get('window');
+const s = width / 640;
+var wid = 240 * s;
+var high = 300 * s;
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
 
 var a = [
     {
@@ -66,12 +78,40 @@ export default class cultureList extends Component {
     render() {
 
         return (
+<<<<<<< HEAD
             <View>
                 <Text>文化列表</Text>
                 <View style={{
                     // flexDirection:'row',
                     // justifyContent:'space-evenly'
                     alignItems:'center'
+=======
+            <ImageBackground
+                source={require('../../assets/lzy/p1.jpg')}
+                style={styles.showbody}
+            >
+                <ImageBackground
+                    resizeMode='cover'
+                    source={require("../../assets/lzy/lzy1.jpg")}
+                    style={styles.tabbar}
+                >
+                    <TouchableOpacity
+                        style={styles.backicon}
+                        onPress={() => Actions.pop()}
+                    >
+                        <Image
+                            style={styles.backicon}
+                            resizeMode='contain'
+                            source={require("../../assets/lzy/dfanhui.png")}
+                        />
+                    </TouchableOpacity>
+                    <Text style={styles.title}>风俗文化</Text>
+                </ImageBackground>
+                <View style={{
+                    // flexDirection:'row',
+                    // justifyContent:'space-evenly'
+                    alignItems: 'center'
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
                 }}>
                     <FlatList
                         numColumns={2}
@@ -97,11 +137,16 @@ export default class cultureList extends Component {
                         )}
                     />
                 </View>
+<<<<<<< HEAD
             </View>
+=======
+            </ImageBackground>
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
         )
     }
 }
 const styles = StyleSheet.create({
+<<<<<<< HEAD
     placelist: {
         width: wid,
         height:high,
@@ -109,6 +154,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin:30*s,
         backgroundColor:'pink',
+=======
+    showbody: {
+        flex: 1,
+    },
+    placelist: {
+        width: wid,
+        height: high,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 30 * s,
+        backgroundColor: 'pink',
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
     },
     citybg: {
         width: wid,
@@ -126,12 +183,41 @@ const styles = StyleSheet.create({
     },
     cityname: {
         position: 'absolute',
+<<<<<<< HEAD
         top: high/2.5,
         left: wid/2.5,
+=======
+        top: high / 2.5,
+        left: wid / 2.5,
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
         alignItems: 'center',
     },
     nametxt: {
         fontSize: 17,
         color: '#fff'
+<<<<<<< HEAD
     }
+=======
+    },
+    tabbar: {
+        width: width,
+        height: 85 * s,
+        flexDirection: 'row',
+        backgroundColor: '#B0C4DE',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+    },
+    backicon: {
+        width: 45 * s,
+        height: 45 * s,
+        position: 'absolute',
+        left: 10 * s,
+        color: '#20B2AA'
+    },
+    title: {
+        fontSize: 21,
+        // color: 'white'
+    },
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
 })

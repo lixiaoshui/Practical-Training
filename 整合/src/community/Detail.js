@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import { Text,TextInput, View, StyleSheet, ImageBackground ,Image,Scene ,TouchableOpacity} from 'react-native'
+=======
+import { Text,TextInput, View, StyleSheet, ImageBackground ,Image,Scene ,TouchableOpacity,Dimensions} from 'react-native'
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
 import { Icon } from '@ant-design/react-native';
 import {Actions} from 'react-native-router-flux';
 
+const { height, width } = Dimensions.get('window')
 const styles=StyleSheet.create({
     top: {
         height: 62,
@@ -58,7 +63,11 @@ export default class Detail extends Component {
     render() {
         return (
             <View>
+<<<<<<< HEAD
                 <ImageBackground source={require('../../assets/lj/ljdetbg.jpg')} style={{width:'100%',height:918}} >
+=======
+                <ImageBackground source={require('../../assets/lj/ljdetbg.jpg')} style={{width:'100%',height:'100%'}} >
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
                     <View style={styles.top} >
                         <View>
                             <Icon name='left' onPress={Actions.pop} style={styles.back} />

@@ -49,6 +49,19 @@ const styles=StyleSheet.create({
 })
 
 export default class Dtcontent extends Component {
+    constructor(){
+        super();
+        this.state={
+            data:''
+        }
+    }
+    componentDidMount(){
+        this.setState({
+            data:this.props.lacation.state
+        },()=>{
+            console.log(this.state.data);
+        })
+    }
     render() {
         return (
             <View>
@@ -58,11 +71,13 @@ export default class Dtcontent extends Component {
                         <Text style={styles.title} >详情</Text>
                     </View>
                     <View>
-                        <Image source={require('../../assets/lj/ljtouxiang2.jpg')} style={styles.toux} />
-                        <Text style={styles.adminname} >小知</Text>
-                        <Text style={styles.admintime} >2020.02.10</Text>
+                        {/* <Image source={require('../../assets/lj/ljtouxiang2.jpg')} style={styles.toux} /> */}
+                        <Image source={this.state.data['imgpath']} style={styles.toux} />
+                        <Text style={styles.adminname} > {this.state.data['username']} </Text>
+                        <Text style={styles.admintime} > {this.state.data['createtime']} </Text>
                         <Text style={styles.admincon} >
-                            这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                            {this.state.data['content']}
+                            {/* 这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等 */}
                         </Text>
                     </View>
                 </ImageBackground>

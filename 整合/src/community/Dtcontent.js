@@ -52,7 +52,11 @@ export default class Dtcontent extends Component {
     render() {
         return (
             <View>
+<<<<<<< HEAD
                 <ImageBackground source={require('../../assets/lj/ljdetbg.jpg')} style={{width:'100%',height:918}} >
+=======
+                <ImageBackground source={require('../../assets/lj/ljdetbg.jpg')} style={{width:'100%',height:'100%'}} >
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
                     <View style={styles.top} >
                         <Icon name='left' style={styles.back} onPress={Actions.pop} />
                         <Text style={styles.title} >详情</Text>

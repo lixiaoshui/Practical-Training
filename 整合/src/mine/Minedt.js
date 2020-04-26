@@ -6,12 +6,18 @@ import {
     StyleSheet,
     TouchableOpacity,
     Dimensions,
+<<<<<<< HEAD
     ImageBackground
+=======
+    ImageBackground,
+    Image
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
 } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 
 const { height, width } = Dimensions.get('window')
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
     topbg: {
         width: '100%',
@@ -19,11 +25,114 @@ const styles = StyleSheet.create({
     },
     top: {
         height: height*0.1,
+=======
+
+export default class Minedt extends Component {
+    render() {
+        return (
+            <View>
+                {/* 头部 */}
+                <ImageBackground source={require('../../assets/yjy/ytop.jpg')} style={styles.topbg} >
+                    <View style={styles.top} >
+                        <View style={styles.toptext}>
+                            <Text style={{ fontSize: 30 }} >我的动态</Text>
+                        </View>
+                        <TouchableOpacity style={styles.topbutton}
+                        // onclick={Actions.detail()} 
+                        >
+                            <Text style={styles.topbtntext} >+</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ImageBackground>
+                <ImageBackground source={require('../../assets/yjy/ybg.jpg')} style={{ width: '100%', height: height * 0.9 }} >
+                    <ScrollView>
+                        <View style={styles.body} >
+                            <TouchableOpacity onPress={Actions.dtcontent} >
+                                <View style={styles.con}  >
+                                    <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
+                                    <Text style={styles.adminname} >小知</Text>
+                                    <Text style={styles.admintime} >2020.02.10</Text>
+                                    <Text style={styles.admincon} >
+                                        这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                                        </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={Actions.dtcontent} >
+                                <View style={styles.con}  >
+                                    <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
+                                    <Text style={styles.adminname} >小知</Text>
+                                    <Text style={styles.admintime} >2020.02.10</Text>
+                                    <Text style={styles.admincon} >
+                                        这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                                        </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={Actions.dtcontent} >
+                                <View style={styles.con}  >
+                                    <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
+                                    <Text style={styles.adminname} >小知</Text>
+                                    <Text style={styles.admintime} >2020.02.10</Text>
+                                    <Text style={styles.admincon} >
+                                        这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                                        </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={Actions.dtcontent} >
+                                <View style={styles.con}  >
+                                    <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
+                                    <Text style={styles.adminname} >小知</Text>
+                                    <Text style={styles.admintime} >2020.02.10</Text>
+                                    <Text style={styles.admincon} >
+                                        这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                                        </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={Actions.dtcontent} >
+                                <View style={styles.con}  >
+                                    <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
+                                    <Text style={styles.adminname} >小知</Text>
+                                    <Text style={styles.admintime} >2020.02.10</Text>
+                                    <Text style={styles.admincon} >
+                                        这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                                        </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={Actions.dtcontent} >
+                                <View style={styles.con}  >
+                                    <Image style={styles.toux} source={require('../../assets/lj/ljtouxiang2.jpg')} />
+                                    <Text style={styles.adminname} >小知</Text>
+                                    <Text style={styles.admintime} >2020.02.10</Text>
+                                    <Text style={styles.admincon} >
+                                        这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等，这次衡山行，最有感觉的几处地方，麻姑仙境、石浪、祝孔庙于等
+                                        </Text>
+                                </View>
+                            </TouchableOpacity>
+
+                        </View>
+                    </ScrollView>
+                </ImageBackground>
+            </View>
+        )
+    }
+}
+
+const styles = StyleSheet.create({
+    topbg: {
+        width: '100%',
+        height: height * 0.1
+    },
+    top: {
+        height: height * 0.1,
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
         width: '100%'
 
     },
     toptext: {
+<<<<<<< HEAD
         height: height*0.1,
+=======
+        height: height * 0.1,
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
         textAlign: 'center',
         textAlignVertical: 'center',
         alignItems: 'center',
@@ -44,6 +153,7 @@ const styles = StyleSheet.create({
     },
     topbtntext: {
         fontSize: 22
+<<<<<<< HEAD
     }
 })
 
@@ -75,3 +185,50 @@ export default class Minedt extends Component {
         )
     }
 }
+=======
+    },
+    body: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // height:400,
+        // borderWidth:1
+    },
+    con: {
+        width: 420,
+        height: 200,
+        marginTop: 30,
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderRadius: 10,
+        borderStyle: 'dashed'
+    },
+    toux: {
+        width: 50,
+        height: 50,
+        borderStyle: 'dotted',
+        borderWidth: 1,
+        borderRadius: 25,
+        marginLeft: 30,
+        marginTop: 20
+    },
+    adminname: {
+        fontSize: 20,
+        position: 'absolute',
+        top: 22,
+        left: 100
+    },
+    admintime: {
+        position: 'absolute',
+        top: 50,
+        left: 100
+    },
+    admincon: {
+        fontSize: 15,
+        paddingLeft: 18,
+        paddingTop: 17,
+        paddingRight: 13,
+        lineHeight: 25
+    }
+})
+>>>>>>> aff1f059d439ebc0b59aecb5fd735601f9f8ed89
