@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Image, View, StyleSheet, ImageBackground, Dimensions,TextInput, AsyncStorage,TouchableOpacity } from 'react-native'
+import { Text, Image, View, StyleSheet, ImageBackground, Dimensions, TextInput, AsyncStorage, TouchableOpacity } from 'react-native'
 import Button from 'react-native-button';
 import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
@@ -10,32 +10,32 @@ export default class Editor extends Component {
         super();
         this.state = {
             name: '小知',
-            sex:'女',
-            year:80,
-            intro:'大家好，我是小知'
+            sex: '女',
+            year: 80,
+            intro: '大家好，我是小知'
         }
     }
-    // componentDidMount(){
-    //     fetch("/backlogin/backlist")
-    //     .then(res=>res.json())
-    //     .then(res=>{
-    //         console.log(res);
-    //         this.setState({
-    //             data:res.message
+    // componentDidMount() {
+    //     fetch("/newintroduce")
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res);
+    //             this.setState({
+    //                 data: res.message
+    //             })
     //         })
-    //     })
     // }
     render() {
         return (
             <View>
-                <ImageBackground style={styles.tabbar} source={require('../assets/yjy/y2.jpg')}>
+                <ImageBackground style={styles.tabbar} source={require('../../assets/yjy/y2.jpg')}>
                     <Button onPress={() => Actions.userPage()}>
                         <Icon color='black' name="left" size={30} style={{ marginLeft: 20 }} />
                     </Button>
                     <Text style={styles.title}>我的资料</Text>
                 </ImageBackground>
 
-                <View style={{ alignItems: 'center' ,backgroundColor:'white',height:height*0.9}}>
+                <View style={{ alignItems: 'center', backgroundColor: 'white', height: height * 0.9 }}>
                     <View
                         style={{
                             width: '80%',
@@ -45,11 +45,11 @@ export default class Editor extends Component {
                             flexDirection: 'row',
                             alignItems: 'center',
                             paddingLeft: 20,
-                            marginBottom:50,
-                            marginTop:150
+                            marginBottom: 50,
+                            marginTop: 150
                         }}>
-                        <Text style={{fontSize:25,marginBottom:5}}>用户名:</Text>
-                    <Text style={{fontSize:25,marginBottom:5,marginLeft:8}}>{this.state.name}</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5 }}>用户名:</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5, marginLeft: 8 }}>{this.state.name}</Text>
                     </View>
                     <View
                         style={{
@@ -60,10 +60,10 @@ export default class Editor extends Component {
                             flexDirection: 'row',
                             alignItems: 'center',
                             paddingLeft: 20,
-                            marginBottom:50
+                            marginBottom: 50
                         }}>
-                        <Text style={{fontSize:25,marginBottom:5}}>性别:</Text>
-                        <Text style={{fontSize:25,marginBottom:5,marginLeft:8}}>{this.state.sex}</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5 }}>性别:</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5, marginLeft: 8 }}>{this.state.sex}</Text>
                     </View>
                     <View
                         style={{
@@ -74,10 +74,10 @@ export default class Editor extends Component {
                             flexDirection: 'row',
                             alignItems: 'center',
                             paddingLeft: 20,
-                            marginBottom:50
+                            marginBottom: 50
                         }}>
-                        <Text style={{fontSize:25,marginBottom:5}}>年龄:</Text>
-                        <Text style={{fontSize:25,marginBottom:5,marginLeft:8}}>{this.state.year}</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5 }}>年龄:</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5, marginLeft: 8 }}>{this.state.year}</Text>
                     </View>
                     <View
                         style={{
@@ -88,10 +88,10 @@ export default class Editor extends Component {
                             flexDirection: 'row',
                             alignItems: 'center',
                             paddingLeft: 20,
-                            marginBottom:50
+                            marginBottom: 50
                         }}>
-                        <Text style={{fontSize:25,marginBottom:5}}>个人简介:</Text>
-                        <Text style={{fontSize:25,marginBottom:5,marginLeft:8}}>{this.state.intro}</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5 }}>个人简介:</Text>
+                        <Text style={{ fontSize: 25, marginBottom: 5, marginLeft: 8 }}>{this.state.intro}</Text>
                     </View>
                     <TouchableOpacity
                         style={{
@@ -104,7 +104,7 @@ export default class Editor extends Component {
                         }}
                         onPress={() => Actions.change()}
                     >
-                        <Text style={{fontSize:25}}>修改资料</Text>
+                        <Text style={{ fontSize: 25 }}>修改资料</Text>
                     </TouchableOpacity>
                 </View>
             </View>
