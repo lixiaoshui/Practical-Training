@@ -1,126 +1,320 @@
+﻿import React, { useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  Image,
+  View,
+  Text,
+  TextInput,
+  StatusBar,
+  BackHandler,
+  ToastAndroid,
+  AsyncStorage,
 
-import React from 'react';
-import {View,BackHandler,Text,ToastAndroid,AsyncStorage,Alert} from 'react-native';
-import {Router,Overlay,Lightbox, Drawer,  Scene, Tabs, Modal, Actions,renderRightButton} from 'react-native-router-flux';
-import {Carouse} from '@ant-design/react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import Hc from './src/home/Hc'
-import Home from './src/home/Home'
+} from 'react-native';
+
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+import { Router, Scene, Tabs, Actions, Drawer, Lightbox, Modal } from 'react-native-router-flux';
+// import Doc from "./components/Doc";
+// import Msg from './components/Msg';
+// import Detail from "./components/Detail";
+// import Shouye from "./components/Shouye";
+// import Personal from "./components/Personal";
+import { Icon } from '@ant-design/react-native'
+import Shopcar from './components/Shopcar';
+// import Goods from "./components/Goods";
+// import Home from "./components/Home";
+import MyTs from './components/MyTs';
+// import Demo1 from './tsdemos/Demo1';
+import MyPublish from './src/userinfor/MyPublish';
+import Goods from './src/goods/Goods';
+import User from './src/userinfor/Userinfor';
+import Login from './src/common/Login';
+import SwiperPage from './src/common/SwiperPage';
+import SplashScreen from 'react-native-splash-screen';
+import Demo from './components/Demo';
+
+import Home from './src/home/Home';
 import Article from "./src/home/Article"
 import Qvshui from './src/game/Qvshui'
 import Game from './src/game/Game'
 import Essay from './src/home/Essay'
-// import ViewProject from './src/home/ViewProject'
-// import Essay1 from './src/home/essay/Essay1'
-// import Essay2 from './src/home/essay/Essay2'
-// import Essay3 from './src/home/essay/Essay3'
+import ArticleDetail from './src/home/ArticleDetail'
 
-let now = 0;
-const App =() => {
+import Register from './src/common/Register';
+
+import cultureList from './src/culture/cultureList';
+import cultureDetail from './src/culture/cultureDetail';
+
+import Destination from './src/destination/Destination';
+import tryselect from './src/destination/tryselect';
+import Placedetail from './src/destination/Placedetail';
+import Jdlist from './src/destination/Jdlist';
+
+
+import Community from './src/community/Community';
+import Detail from './src/community/Detail';
+import Dtcontent from './src/community/Dtcontent';
+
+import Mine from './src/mine/Mine';
+import Change from './src/mine/Change';
+import Editor from './src/mine/Editor';
+import Minedt from './src/mine/Minedt';
+
+console.disableYellowBox = true;//取消下面黄色的弹框提示
+
+
+
+
+
+const App = () => {
+  let [isLogin, setLogin] = useState(false);
+  let [isFirstInstall, setFirstInstall] = useState(true);
+  let now = 0;
+  let init = () => {
+
+    AsyncStorage.getItem('isFirstIntall')
+      .then(res => {
+        console.log('isinstall', res);
+        if (res) {
+          setFirstInstall(false);
+        }
+      });
+
+    // AsyncStorage.clear();
+    AsyncStorage.getItem('user')
+      .then(res => {
+        let user = JSON.parse(res);
+        console.log('jjjjjjjjj' + res);
+        if (!user) {
+          SplashScreen.hide();
+        }
+        if (user && user.token) {
+          SplashScreen.hide();
+          setLogin(true);
+        }
+      })
+  };
+  function backAndroidHandler() {
+    if (Actions.currentScene != 'home' && Actions.currentScene != 'login') {
+
+      Actions.pop();
+      console.log('now pop!!!!!' + Actions.currentScene);
+      return true;
+
+    } else {
+      console.log('pop!!!!!' + Actions.currentScene);
+      if (new Date().getTime() - now < 2000) {
+        BackHandler.exitApp();
+      } else {
+        ToastAndroid.show('确定要退出吗', 100);
+        now = new Date().getTime();
+        return true;
+      }
+    }
+  }
+
+  useEffect(() => {
+    init();
+    BackHandler.addEventListener('hardwareBackPress', backAndroidHandler);
+  });
+
+  let afterInstall = () => {
+    setFirstInstall(false);
+  };
+
+  if (isFirstInstall) {
+    return <View style={{ flex: 1 }}>
+      <SwiperPage afterInstall={afterInstall} />
+    </View>
+  }
+
   return (
-    <Router
-		backAndroidHandler={()=>{
-			if(Actions.currentScene != 'home'){
-				Actions.pop();
-				return true;
-			}else{
-				if(new Date().getTime()-now<2000){
-					BackHandler.exitApp();
-				}else{
-					ToastAndroid.show('确定要退出吗',100);
-					now = new Date().getTime();
-					return true;
-				}
-			}
-			
-		}}
-	>
-	<Modal key="modal" hideNavBar>
-		<Lightbox key="lightbox"> 
-			<Scene key="root">
-				<Tabs 
-					key='tabbar'
-					hideNavBar
-					activeTintColor="red"
-					inactiveTintColor="gray"
-				>
-					{/* 首页 */}
-					<Scene key='homePage'
-						hideNavBar
-						title='首页'
-						icon={
-							({focused})=><Icon 
-								color={focused?'red':'gray'} 
-								name="home"
-								style={{fontSize:18}}
-							/>
-						}
-					>
-						<Scene key='home' 
-							component={Home}
-						/>
-					</Scene>
-					{/* 目的地 */}
-					<Scene key='destination'
-						hideNavBar
-						title='目的地'
-						icon={
-							({focused})=><Icon 
-								color={focused?'red':'gray'} 
-								name="map-marker"
-								style={{fontSize:18}}
-							/>
-						}
-					>
-						<Scene key="goods" component={Article}/>
-					</Scene>
-					{/* 社区 */}
-					<Scene key='community'
-						hideNavBar
-						title='社区'
-						icon={
-							({focused})=><Icon 
-								color={focused?'red':'gray'} 
-								name="building"
-								style={{fontSize:18}}
-							/>
-						}
-					>
-						<Scene key="game" component={Game}/>
-					</Scene>
-					{/* 我的 */}
-					<Scene 
-						key='userPage'
-						hideNavBar
-						hideDrawerButton
-						title="用户中心"
-						icon={
-							({focused})=><Icon 
-								color={focused?'red':'gray'} 
-								name="user"
-								style={{fontSize:18}}
-							/>
-						}
-					>
-						{/* <Scene key="ViewProject" component={ViewProject}/> */}
-						<Scene key="essay" component={Essay}/>
+    <>
+      <Router>
+        <Modal key="modal" hideNavBar>
+          <Lightbox key="lightbox">
+            {/* <Drawer key="drawer"
+            contentComponent={()=><Text>drawer</Text>}
+            drawerWidth={400}
+            drawerIcon={()=><Icon name="menu"/>}
+        > */}
+            <Scene key="root">
+              <Tabs
+                key="tabbar"
+                hideNavBar
+                activeTintColor="red"
+                inactiveTintColor="#b4b4b4"
+              >
+                {/* <Scene key="homePage"
+            hideNavBar
+            title="首页"
+            icon={
+              ({focused})=><Icon name="home" color={focused?'red':'#b4b4b4'}/>
+            }
+          > */}
+                <Scene key='homePage'
+                  title='首页'
+                  icon={
+                    ({ focused }) => <Icon
+                      color={focused ? 'red' : 'grey'}
+                      name="home"
+                    />
+                  }
+                  hideNavBar
+                >
+                  {/* <Scene key="indexye" component={Shouye}/> */}
+                  <Scene key="home" component={Home} />
 
-					</Scene>
-				</Tabs>
-			</Scene>
-		</Lightbox>
+                </Scene>
 
-		<Scene key="article" component={Article}/>
-		<Scene key="qvshui" component={Qvshui}/>
-		{/* <Scene key="essay1" component={Essay1}/>
-		<Scene key="essay2" component={Essay2}/>
-		<Scene key="essay3" component={Essay3}/> */}
-	</Modal>
-	</Router>
+
+                <Scene key="destination"
+                  // hideNavBar
+                  title="目的地"
+                  icon={
+                    ({ focused }) => <Icon
+                      name="appstore"
+                      color={focused ? 'red' : '#b4b4b4'}
+                    />
+                  }
+                >
+                  <Scene
+                    hideNavBar
+                    // hideTabBar 
+                    key="destinationIndex"
+                    component={Destination} />
+                  <Scene
+                    key="cultureList"
+                    title="风俗文化目录"
+                    component={cultureList}
+                    hideNavBar
+                  // titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
+                  // headerStyle={{backgroundColor:'#e3e3de'}}
+                  // navBarButtonColor='#fff'
+                  />
+                  <Scene
+                    key="cultureDetail"
+                    title="风俗文化详情"
+                    hideNavBar
+                    hideTabBar
+                    component={cultureDetail}
+                    // titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
+                    // headerStyle={{ backgroundColor: '#e3e3de' }}
+                    // navBarButtonColor='#fff'
+                  />
+                  <Scene
+                    key="placeDetail"
+                    title="景点详情"
+                    hideNavBar
+                    hideTabBar
+                    component={Placedetail}
+                    titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
+                    headerStyle={{ backgroundColor: '#e3e3de' }}
+                    navBarButtonColor='#fff'
+                  />
+                  <Scene
+                    key="placelist"
+                    title="景点列表"
+                    hideNavBar
+                    hideTabBar
+                    component={Jdlist}
+                    // titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
+                    // headerStyle={{ backgroundColor: '#e3e3de' }}
+                    // navBarButtonColor='#fff'
+                  />
+                </Scene>
+
+                {/* 社区 */}
+                <Scene
+                  hideNavBar
+                  key='communityPage'
+                  hideDrawerButton
+                  icon={({ focused }) =>
+                    <Icon
+                      color={focused ? 'red' : 'grey'}
+                      name='build' />
+                  }
+                  title="社区"
+                >
+                  <Scene key="community" component={Community} />
+                </Scene>
+                <Scene
+                  key="tryselect"
+                  component={tryselect}
+                />
+
+                {/* <Scene key="个人中心"
+                  icon={
+                    ({ focused }) => <Icon name="user" color={focused ? 'red' : '#b4b4b4'} />
+                  }
+                >
+                  <Scene hideNavBar key="mine" component={User} />
+                  <Scene
+                    key='mypublish'
+                    title='我的发布'
+                    hideTabBar
+                    component={MyPublish}
+                    titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
+                    headerStyle={{ backgroundColor: '#f23030' }}
+                    navBarButtonColor='#fff'
+                  />
+                </Scene> */}
+                {/* 我的 */}
+								<Scene 
+									hideNavBar
+									key='userPage'
+									hideDrawerButton
+									icon={({focused})=>
+										<Icon 
+											color={focused?'red':'grey'} 
+											name='user'/>
+										}
+									title="我的"
+								>
+									<Scene key="mine" component={Mine}/>
+								</Scene>
+
+              </Tabs>
+            </Scene>
+            {/* </Drawer> */}
+
+          </Lightbox>
+          {/* <Scene initial={!isLogin} key="login" component={Login} />
+          <Scene key='join' component={Register} /> */}
+          <Scene initial={!isLogin}  key="login" component={Login} />		
+				<Scene key="register" component={Register} />
+				<Scene key='detail' component={Detail} />
+
+				<Scene key="tryselect" component={tryselect}/>
+				<Scene key='dtcontent' component={Dtcontent} />
+
+				<Scene key='change' component={Change} />
+				<Scene key='editor' component={Editor} />
+				<Scene key='minedt' component={Minedt} />
+
+				<Scene key="essay" component={Essay}/>
+                <Scene key="qvshui" component={Qvshui}/>
+                <Scene key="article" component={Article}/>
+                <Scene key="articleDetail" component={ArticleDetail}/>
+        </Modal>
+      </Router>
+
+    </>
   );
 };
 
+const styles = StyleSheet.create({
 
+});
 
 export default App;
+
 
