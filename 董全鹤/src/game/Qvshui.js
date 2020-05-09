@@ -3,12 +3,12 @@ import {SafeAreaView,StyleSheet, View,FlatList,
   Text,Image,StatusBar, TextInput,Dimensions, ScrollView,ImageBackground} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { WebView } from 'react-native-webview';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Icon } from '@ant-design/react-native';
 const {width} = Dimensions.get("window");
 const {height} = Dimensions.get("window");
 const w=width/640;
 
-export default class Game extends Component{
+export default class Qvshui extends Component{
 render(){
   return (
     <View style={{height:height,width:width}}>
@@ -20,7 +20,7 @@ render(){
       </ImageBackground>
       <ImageBackground source={require("../../assets/dqh/homebc.png")} style={{width: '100%',height:height}}>
         <View style={{width:640*w,height:height*0.7}}>
-            <WebView source={{ uri: 'https://dqh123456.github.io/pintu/p4.html' }} style={{height:height,width:width}}/>
+            <WebView source={{ uri: 'https://dqh123456.github.io/pintu/pintu.html' }} style={{height:height,width:width}}/>
         </View>
       </ImageBackground>
         

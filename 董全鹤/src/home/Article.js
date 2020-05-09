@@ -2,9 +2,8 @@ import React ,{Component}from 'react';
 import {SafeAreaView,StyleSheet, View,FlatList,
   Text,Image,StatusBar, TextInput,Dimensions,TouchableOpacity, ScrollView,ImageBackground} from 'react-native';
 import { Carousel, Button } from '@ant-design/react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
-import { myFetch } from '../utils/index';
 const {width} = Dimensions.get("window");
 const {height} = Dimensions.get("window");
 const w=width/640;
@@ -24,22 +23,15 @@ const article =[
       tit:"老北京的传说：太和殿的龙没法儿数",
       title:"老北京的传说",
     },
-    
+    {
+      img:require("../../assets/dqh/dbujv.png"),
+      tit:"北京城的建造：一段勇斗恶龙的历史",
+      title:"北京城的建造",
+      
+    }
   ]
 export default class Article extends Component{
-  componentDidMount() {
-    myFetch.get('/getArticlelist', {
-        jdtitle: '太和殿'
-    })
-        .then(res => {
-            this.setState({
-                data: res.data
-            }, () => {
-                console.log(res.data);
-
-            })
-        })
-}
+  
 render(){
   return (
     <View>
@@ -108,83 +100,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'center',
     },
-    showbody: {
-      flex: 1,
-  },
-  searchbar: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center'
-  },
-  search: {
-      width: 450 *w,
-      height: 50 *w,
-      paddingLeft: 30 *w,
-      borderWidth: 2 *w,
-      borderColor: "#999999",
-      borderRadius: 25 *w,
-  },
-  icon: {
-      position: "absolute",
-      top: 8 *w,
-      right: 110 *w
-  },
-  // 风俗文化
-  titlebar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingLeft: 20 *w
-  },
-  name: {
-      fontSize: 22,
-  },
-  culshow: {
-      width: width,
-      flexDirection: "row",
-      justifyContent: 'space-evenly',
-      marginTop: 25 *w,
-  },
-  Articlebg: {
-      width: 180 *w,
-      height: 230 *w,
-  },
-  Articlebgp: {
-      position: "relative"
-  },
-  Articlename: {
-      fontSize: 20,
-      position: "absolute",
-      top: 100 *w,
-      left: 60 *w
-  },
-  // 景点
-  placelist: {
-      margin: 30 *w,
-  },
-  citybg: {
-      width: 250 *w,
-      height: 150 *w,
-  },
-  citybgp: {
-      position: 'relative'
-  },
-  coverbox: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      backgroundColor: '#a3a3a3',
-      opacity: 0.5
-  },
-  cityname: {
-      position: 'absolute',
-      top: 43 *w,
-      left: 40 *w,
-      alignItems: 'center',
-  },
-  nametxt: {
-      fontSize: 17,
-      color:'#fff'
-  }
   })
   
   

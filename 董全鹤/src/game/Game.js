@@ -3,7 +3,7 @@ import {SafeAreaView,StyleSheet, View,FlatList,
   Text,Image,StatusBar, TextInput,Dimensions, ScrollView,ImageBackground} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { WebView } from 'react-native-webview';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Icon } from '@ant-design/react-native';
 const {width} = Dimensions.get("window");
 const w=width/640;
 
@@ -21,7 +21,7 @@ render(){
         <View style={{height:100*w}}/>
         <View style={styles.game}>
             <ImageBackground source={require("../../assets/dqh/jishou.jpg")} style={styles.gamebc}>
-                <Text style={styles.gamep}>太和殿上的脊兽</Text>
+                <Text style={styles.gamep} onPress={()=>Actions.chengyv()}>太和殿上的脊兽</Text>
             </ImageBackground>
         </View>
         <View  style={styles.game}>

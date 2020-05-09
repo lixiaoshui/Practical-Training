@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,38 +22,38 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { Router, Scene, Tabs, Actions, Drawer, Lightbox, Modal } from 'react-native-router-flux';
+import SplashScreen from 'react-native-splash-screen';
 // import Doc from "./components/Doc";
 // import Msg from './components/Msg';
 // import Detail from "./components/Detail";
 // import Shouye from "./components/Shouye";
 // import Personal from "./components/Personal";
-import { Icon } from '@ant-design/react-native'
-import Shopcar from './components/Shopcar';
-// import Goods from "./components/Goods";
-// import Home from "./components/Home";
-import MyTs from './components/MyTs';
-// import Demo1 from './tsdemos/Demo1';
-import MyPublish from './src/userinfor/MyPublish';
-import Goods from './src/goods/Goods';
-import User from './src/userinfor/Userinfor';
+import Icon from '@ant-design/react-native'
+// import Shopcar from './components/Shopcar';
+// // import Goods from "./components/Goods";
+// // import Home from "./components/Home";
+// import MyTs from './components/MyTs';
+// // import Demo1 from './tsdemos/Demo1';
+// import MyPublish from './src/userinfor/MyPublish';
+
+// import Goods from './src/goods/Goods';
+// import User from './src/userinfor/Userinfor';
 import Login from './src/common/Login';
 import SwiperPage from './src/common/SwiperPage';
-import SplashScreen from 'react-native-splash-screen';
-import Demo from './components/Demo';
-
-import Home from './src/home/Home';
-import Article from "./src/home/Article"
-import Qvshui from './src/game/Qvshui'
-import Game from './src/game/Game'
-import Essay from './src/home/Essay'
-import ArticleDetail from './src/home/ArticleDetail'
-
+// import Demo from './components/Demo';
 import Register from './src/common/Register';
+import Destination from './src/destination/Destination';
+
+import Qvshui from './src/game/Qvshui'
+import Chengyv from './src/game/Chengyv'
+import Game from './src/game/Game'
+import Home from './src/home/Home'
+import Essay from './src/home/Essay'
+import Article from "./src/home/Article"
+import ArticleDetail from './src/home/ArticleDetail'
 
 import cultureList from './src/culture/cultureList';
 import cultureDetail from './src/culture/cultureDetail';
-
-import Destination from './src/destination/Destination';
 import tryselect from './src/destination/tryselect';
 import Placedetail from './src/destination/Placedetail';
 import Jdlist from './src/destination/Jdlist';
@@ -67,6 +67,9 @@ import Mine from './src/mine/Mine';
 import Change from './src/mine/Change';
 import Editor from './src/mine/Editor';
 import Minedt from './src/mine/Minedt';
+import Minecollect from './src/mine/Minecollect'
+
+import searchResult from './src/search/searchResult';
 
 console.disableYellowBox = true;//取消下面黄色的弹框提示
 
@@ -153,19 +156,14 @@ const App = () => {
                 activeTintColor="red"
                 inactiveTintColor="#b4b4b4"
               >
-                {/* <Scene key="homePage"
-            hideNavBar
-            title="首页"
-            icon={
-              ({focused})=><Icon name="home" color={focused?'red':'#b4b4b4'}/>
-            }
-          > */}
+                
                 <Scene key='homePage'
                   title='首页'
                   icon={
                     ({ focused }) => <Icon
                       color={focused ? 'red' : 'grey'}
                       name="home"
+                      style={{fontSize:20}}
                     />
                   }
                   hideNavBar
@@ -181,8 +179,9 @@ const App = () => {
                   title="目的地"
                   icon={
                     ({ focused }) => <Icon
-                      name="appstore"
+                      name="map-marker"
                       color={focused ? 'red' : '#b4b4b4'}
+                      style={{fontSize:20}}
                     />
                   }
                 >
@@ -196,9 +195,6 @@ const App = () => {
                     title="风俗文化目录"
                     component={cultureList}
                     hideNavBar
-                  // titleStyle={{flex:1,color:'#fff',textAlign:'center'}}
-                  // headerStyle={{backgroundColor:'#e3e3de'}}
-                  // navBarButtonColor='#fff'
                   />
                   <Scene
                     key="cultureDetail"
@@ -206,9 +202,6 @@ const App = () => {
                     hideNavBar
                     hideTabBar
                     component={cultureDetail}
-                    // titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
-                    // headerStyle={{ backgroundColor: '#e3e3de' }}
-                    // navBarButtonColor='#fff'
                   />
                   <Scene
                     key="placeDetail"
@@ -226,9 +219,6 @@ const App = () => {
                     hideNavBar
                     hideTabBar
                     component={Jdlist}
-                    // titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
-                    // headerStyle={{ backgroundColor: '#e3e3de' }}
-                    // navBarButtonColor='#fff'
                   />
                 </Scene>
 
@@ -240,33 +230,18 @@ const App = () => {
                   icon={({ focused }) =>
                     <Icon
                       color={focused ? 'red' : 'grey'}
-                      name='build' />
+                      name='building' 
+                      style={{fontSize:20}}/>
                   }
                   title="社区"
                 >
                   <Scene key="community" component={Community} />
                 </Scene>
-                <Scene
+                {/* <Scene
                   key="tryselect"
                   component={tryselect}
-                />
+                /> */}
 
-                {/* <Scene key="个人中心"
-                  icon={
-                    ({ focused }) => <Icon name="user" color={focused ? 'red' : '#b4b4b4'} />
-                  }
-                >
-                  <Scene hideNavBar key="mine" component={User} />
-                  <Scene
-                    key='mypublish'
-                    title='我的发布'
-                    hideTabBar
-                    component={MyPublish}
-                    titleStyle={{ flex: 1, color: '#fff', textAlign: 'center' }}
-                    headerStyle={{ backgroundColor: '#f23030' }}
-                    navBarButtonColor='#fff'
-                  />
-                </Scene> */}
                 {/* 我的 */}
 								<Scene 
 									hideNavBar
@@ -275,7 +250,8 @@ const App = () => {
 									icon={({focused})=>
 										<Icon 
 											color={focused?'red':'grey'} 
-											name='user'/>
+											name='user'
+                      style={{fontSize:20}}/>
 										}
 									title="我的"
 								>
@@ -287,23 +263,26 @@ const App = () => {
             {/* </Drawer> */}
 
           </Lightbox>
-          {/* <Scene initial={!isLogin} key="login" component={Login} />
-          <Scene key='join' component={Register} /> */}
           <Scene initial={!isLogin}  key="login" component={Login} />		
 				<Scene key="register" component={Register} />
 				<Scene key='detail' component={Detail} />
 
 				<Scene key="tryselect" component={tryselect}/>
 				<Scene key='dtcontent' component={Dtcontent} />
+        <Scene key="showresult" component={searchResult}/>
 
 				<Scene key='change' component={Change} />
 				<Scene key='editor' component={Editor} />
 				<Scene key='minedt' component={Minedt} />
+        <Scene key="minecollect" component={Minecollect}/>
 
-				<Scene key="essay" component={Essay}/>
-                <Scene key="qvshui" component={Qvshui}/>
-                <Scene key="article" component={Article}/>
-                <Scene key="articleDetail" component={ArticleDetail}/>
+        
+        <Scene key="article" component={Article}/>
+        <Scene key="qvshui" component={Qvshui}/>
+        <Scene key="chengyv" component={Chengyv}/>
+        <Scene key="articleDetail" component={ArticleDetail}/>
+        <Scene key="essay" component={Essay}/>
+        <Scene key="game" component={Game}/>
         </Modal>
       </Router>
 

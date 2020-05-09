@@ -1,9 +1,9 @@
 //https://fb.me/react-async-component-lifecycle-hooks
 import React ,{Component}from 'react';
 import {SafeAreaView,StyleSheet, View,FlatList,
-  Text,Image,StatusBar, TextInput,Dimensions, ScrollView, ImageBackground,} from 'react-native';
+  Text,Image,TouchableOpacity,  TextInput,Dimensions, ScrollView, ImageBackground,} from 'react-native';
 import { Carousel, Button} from '@ant-design/react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
 const {width} = Dimensions.get("window");
 const w=width/640;
@@ -12,31 +12,49 @@ const article =[
     img:require("../../assets/dqh/article1.png"),
     tit:"故宫的大怪兽：让你看到一个不一样的故宫文化介绍",
   },
-  {
-    img:require("../../assets/dqh/article2.png"),
-    tit:"老北京的传说:太和殿的龙没法儿数",
-  },
-  {
-    img:require("../../assets/dqh/article3.png"),
-    tit:"景色如画：        欣赏各地景色，提升文化素养",
-  },
+  // {
+  //   img:require("../../assets/dqh/article2.png"),
+  //   tit:"老北京的传说:太和殿的龙没法儿数",
+  // },
+  // {
+  //   img:require("../../assets/dqh/article3.png"),
+  //   tit:"景色如画：        欣赏各地景色，提升文化素养",
+  // },
 ]
 export default class Home extends Component{
 render(){
   return (
     <ImageBackground source={require("../../assets/dqh/homebc.png")} style={{width: '100%',height:"100%"}}>
     <View>
-      <ImageBackground source={require("../../assets/dqh/search.jpg")} style={{width: '100%',}}>
-      <View style={styles.head}>
-          <View style={styles.search}>
-              <TextInput placeholder='请输入目的地'
-                  style={{color:"white",fontSize:10}} >
-              </TextInput>
-              <Icon name="search" style={{fontSize:30*w,marginLeft:120*w,color:"green"}} />
+      {/* <ImageBackground source={require("../../assets/dqh/search.jpg")} style={{width: '100%',}}>
+          <View style={styles.head}>
+              <View style={styles.search}>
+                  <TextInput placeholder='请输入目的地'
+                      style={{color:"white",fontSize:10}} >
+                  </TextInput>
+                  <Icon name="search" style={{fontSize:30 * w,marginLeft:240 * w,color:"green"}} onPress={()=>Actions.showresult()}/>
+              </View>
           </View>
-      </View>
-      </ImageBackground>
-    
+      </ImageBackground> */}
+      <ImageBackground
+                    style={{
+                        width: width,
+                        height: 80 *w,
+                        justifyContent: 'center'
+                    }}
+                    resizeMode="cover"
+                    source={require('../../assets/lzy/albg5.jpg')}
+                >
+                    <View style={styles.searchbar}>
+                        <TextInput
+                            style={styles.search}
+                            placeholderTextColor="gray"
+                            placeholder="请输入关键词"
+                        />
+                        <Icon name='search' size="md" style={styles.icon} />
+                    </View>
+
+                </ImageBackground>
     <ScrollView>
     <Carousel
       autoplay
@@ -52,7 +70,7 @@ render(){
     </Carousel>
     <View style={styles.gg}>
       <ImageBackground  source={require("../../assets/dqh/dmaoxian.jpg")} style={styles.gugong} >
-      <Text  style={styles.ggp} onPress={()=>Actions.obj()}>故宫大冒险：让你在游戏中了解故宫</Text>
+      <Text  style={styles.ggp} onPress={()=>Actions.game()}>故宫大冒险：让你在游戏中了解故宫</Text>
       </ImageBackground>
     </View>
     <View style={styles.articles}>
@@ -86,18 +104,18 @@ render(){
 const styles = StyleSheet.create({
   head:{ 
     flexDirection: 'row',
-    height:90*w,
-    paddingLeft:15*w,
-    paddingTop:15*w,
-    paddingBottom:15*w,
+    height:90 *w,
+    paddingLeft:15 *w,
+    paddingTop:15 *w,
+    paddingBottom:15 *w,
     },
   search:{
-    width:'50%',
+    width:'70%',
     flexDirection:'row',
     alignItems:'center',
-    borderRadius:10*w,
-    paddingLeft:10*w,
-    borderWidth:2*w,
+    borderRadius:40 *w,
+    paddingLeft:10 *w,
+    borderWidth:2 *w,
     borderColor:"gray"
   },
   gg:{
@@ -164,5 +182,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'center',
   },
+  
+search: {
+  width: 450 *w,
+  height: 50 *w,
+  paddingLeft: 30 *w,
+  borderWidth: 2 *w,
+  borderColor: "#999999",
+  borderRadius: 25 *w,
+},
+icon: {
+  position: "absolute",
+  top: 8 *w,
+  right: 110 *w
+},
 })
 
