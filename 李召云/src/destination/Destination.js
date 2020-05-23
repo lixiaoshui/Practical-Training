@@ -80,14 +80,30 @@ export default class Destination extends Component {
         this.state = {
             data: [],
             value: [],
-            name: ''
+            name: '',
+            city:props.city?props.city:'默认',
+
             // pickerValue: [],
         };
+        console.log(props);
     }
 
     componentDidMount(){
         console.log("11111111");
     }
+
+    componentWillReceiveProps(nextProps) {
+        console.log("上一页"+nextProps.city);
+        this.setState({
+            city:nextProps.city
+        },()=>{
+            // this.forceUpdate();
+            console.log(this.state.city);
+        })
+        
+        
+    }
+    
 
     render() {
         return (
@@ -99,18 +115,25 @@ export default class Destination extends Component {
                     style={{
                         width: width,
                         height: 80 * s,
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        alignItems:'flex-start'
                     }}
                     resizeMode="cover"
-                    source={require('../../assets/lzy/albg5.jpg')}
+                    // source={require('../../assets/lzy/albg5.jpg')}
+                    source={require("../../assets/lzy/lzy1.jpg")}
                 >
                     <View style={styles.searchbar}>
-                        <TextInput
-                            style={styles.search}
-                            placeholderTextColor="gray"
-                            placeholder="请输入关键词"
-                        />
-                        <Icon name='search' size="md" style={styles.icon} />
+                        <TouchableOpacity
+                            onPress={()=>Actions.showresult()}
+                        >
+                            <TextInput
+                                style={styles.search}
+                                placeholderTextColor="gray"
+                                placeholder="请输入关键词"
+                                onPress={()=>Actions.showresult()}
+                            />
+                            <Icon name='search' size="md" style={styles.icon} />
+                        </TouchableOpacity>
                     </View>
 
                 </ImageBackground>
@@ -159,7 +182,7 @@ export default class Destination extends Component {
                         </View>
 
                     </View>
-                    <Provider>
+                    {/* <Provider>
                         <View>
                             <List>
                                 <Picker
@@ -176,7 +199,15 @@ export default class Destination extends Component {
 
                             </List>
                         </View>
-                    </Provider>
+                    </Provider> */}
+                    <View>
+                        <TouchableOpacity
+                            onPress={()=>Actions.cityselect()}
+                        >
+                            <Text>切换城市</Text>
+                            <Text>{this.state.city}</Text>
+                        </TouchableOpacity>
+                    </View>
                     <View style={{
                         width: width,
                         // backgroundColor: 'pink',
@@ -224,10 +255,11 @@ const styles = StyleSheet.create({
     searchbar: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft:25*s,
     },
     search: {
-        width: 450 * s,
+        width: 460 * s,
         height: 50 * s,
         paddingLeft: 30 * s,
         borderWidth: 2 * s,
@@ -237,7 +269,7 @@ const styles = StyleSheet.create({
     icon: {
         position: "absolute",
         top: 8 * s,
-        right: 110 * s
+        right: 30 * s
     },
     // 风俗文化
     titlebar: {
