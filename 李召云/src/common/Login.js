@@ -1,231 +1,125 @@
-import React, { Component } from 'react';
-import { Text, View,ActivityIndicator,Dimensions, ToastAndroid, TextInput, AsyncStorage, TouchableOpacity, Image, StyleSheet, Alert, } from "react-native";
+import React, {Component,useState} from 'react';
+import {View, Text, Image, TextInput, AsyncStorage, TouchableOpacity, BackHandler, ToastAndroid, ImageBackground} from 'react-native';
 import { Icon } from '@ant-design/react-native';
-import { Actions } from "react-native-router-flux";
-import { myFetch } from '../utils/index';
-
-
-// const key Toast.loading('messsage')
-// Portal.remove(key)
-
-// let rootUrl='https://www.fastmock.site/mock/3c4e31ce2f1df90f673953e561c0b4a9/api';//fastmock根路径
-
-
-const { width } = Dimensions.get('window');
-const s = width / 640;
-
-
+import { Actions,Router } from 'react-native-router-flux';
+import {myFetch} from '../utils'
 export default class Login extends Component {
-
-    constructor() {
+    constructor(){
         super();
         this.state = {
-            username: '',
-            pwd: '',
-            isloding: false
+            username:'',
+            pwd:'',
+            isloading:false,
+            now:0
         }
     }
-
-    userhandle = (text) => {
-        // console.log(text);
-        this.setState({ username: text })
+    userhandle = (text)=>{
+        this.setState({username:text})
     }
-
-    pwdhandle = (text) => {
-        // console.log(text);
-        this.setState({ pwd: text })
+    pwdhandle = (text)=>{
+        this.setState({pwd:text})
     }
-
-    login = () => {
-
-        // var user={
-        //     "code":'0000',
-        //     "data":{
-        //         "username":'zhang',
-        //         "token":'@id'
-        //     },
-        //     "desc":'成功'
-        // };
+    login = ()=>{
         // myFetch.get('/topics',{limit:4,user:'sss'})
-        // .then(res=>{
-        //     console.log(res);
-        // })
+        //     .then(res=>console.log(res))
+        this.setState({isloading:true})
+        myFetch.post('/login',{
+            username:this.state.username,
+            pwd:this.state.pwd}
+        ).then(res=>{
+            // 根据返回状态进行判断，正确时跳转首页
+            // if(res){
 
-        // 箭头函数：
-        // ()=>123, 123直接是返回值
-        // ()=>{
-        //   代码逻辑...
-        //   return ...
-        // }
-        if (!this.state.username) {
-            Alert.alert('请输入用户名！');
-        }
-        else if (!this.state.pwd) {
-            Alert.alert('请输入密码！');
-        } else {
-            this.setState({
-                isloding: true
-            })
-            myFetch.post('/login', {
-                username: this.state.username,
-                pwd: this.state.pwd
-            }).then(res => {
-                if (res.result == '0') {
-                    Alert.alert('登录失败！');
-                    this.setState({
-                        isloding: false
-                    });
-                } else {
-                    this.setState({
-                        isloding: false
-                    })
-                    // console.log(',,,,,' + res.data);
-                    AsyncStorage.setItem('user', JSON.stringify(res.data))  //存储的是字符串,返回值是Promise函数
-                        .then(() => {
-                            Actions.homePage();
-                        })
-                }
-
-            })
-        }
-
-        // fetch(rootUrl+'/login',{
-        //     method:'POST',
-        //     headers:{
-        //         "Accept":'application/json',
-        //         'Content-type':'application/json'
-        //     },
-        //     body:JSON.stringify({
-        //         username:this.state.username,
-        //         pwd:this.state.pwd
-        //     })
-        // })
-        // .then(res=>res.json())
-        // .then(res=>{
-        //     console.log(res);
-        //     Actions.homePage();//不能直接跳到子页面，要先跳到外层页面或 root或lightbox
-        // })
-
-    }
-
-
-    render() {
-        return (
-            <View style={{
-                flex:1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                // marginTop: '30%',
-                backgroundColor:'#F8F8FF'
-
+            // }
+            AsyncStorage.setItem('user',JSON.stringify(res.data))
+                .then(()=>{
+                    this.setState({isloading:false})
+                    Actions.homePage();
+                })
+        })
+    } 
+  render() {
+    BackHandler.addEventListener('back',()=>{
+      if(new Date().getTime()-this.state.now<2000){
+        BackHandler.exitApp();
+      }else{
+        ToastAndroid.show('确定要退出吗',100);
+        this.state.now = new Date().getTime();
+        return true;
+      }
+    });
+    return (
+      <ImageBackground source={require("../../assets/lzy/p1.jpg")} style={{width:"100%",height:"100%"}}>
+      <View style={{flex: 1,justifyContent: 'center'}}>
+        <View style={{ alignItems: 'center',justifyContent:"center",}}>
+            <Image source={require("../../assets/dqh/zhixing2.png")} style={{position:"absolute",bottom:300}}/>
+          <View
+            style={{marginTop:100,
+              width: '80%',
+              marginRight: 10,
+              borderBottomColor: '#ccc',
+              borderBottomWidth: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingLeft: 20,
             }}>
-                <View style={{
-                    justifyContent: 'center',
+            <Text style={{color:"#0D0D0D",marginLeft:2}}><Icon name="user" color="brown"/>&emsp;用户名</Text>
+            <TextInput 
+                onChangeText={this.userhandle}
+            />
+          </View>
+          <View
+            style={{
+              width: '80%',
+              marginRight: 10,
+              borderBottomColor: '#ccc',
+              borderBottomWidth: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingLeft: 20,
+            }}>
+            <Text style={{color:"#0D0D0D"}}><Icon name="laptop" color="brown"/>&emsp;密&ensp;&nbsp;码</Text>
+            <TextInput 
+                onChangeText={this.pwdhandle}
+                secureTextEntry={true}
+            />
+          </View>
+            <TouchableOpacity 
+                style={{
+                    width: '60%',
+                    height: 40,
+                    borderWidth:1 ,
+                    borderColor:"gray",
+                    borderRadius:20,
+                    marginTop: 30,
                     alignItems: 'center',
-                    
-                }}>
-                    <View>
-                        <Icon name="user" style={{ width: 35*s, height: 35*s, position: 'absolute', left: 15*s, top: 32*s }} />
-                        <TextInput
-                            placeholder="用户名"
-                            placeholderTextColor='#79CDCD'
-                            onChangeText={this.userhandle}
-                            style={{
-                                marginTop: 20*s,
-                                height: 60*s,
-                                width: 400*s,
-                                borderRadius: 30*s,
-                                borderColor: "#40E0D0",
-                                borderWidth: 1*s,
-                                padding:0,
-                                paddingLeft: 60*s,
-                            }}
-                        />
-                    </View>
-                    <View>
-                        <Icon name="unlock" style={{ width: 35*s, height: 35*s, position: 'absolute', left: 15*s, top: 62*s }} />
-                        <TextInput
-                            placeholder="密码"
-                            placeholderTextColor='#79CDCD'
-                            secureTextEntry={true}
-                            onChangeText={this.pwdhandle}
-                            style={{
-                                marginTop: 50*s,
-                                height: 60*s,
-                                width: 400*s,
-                                borderRadius: 30*s,
-                                borderColor: "#40E0D0",
-                                borderWidth: 1*s,
-                                padding:0,
-                                paddingLeft: 60*s,
-                                
-                            }}
-                        />
-                    </View>
-                    <View style={{
-                        width: '100%',
-                        // backgroundColor:'orange',
-                        marginTop: 60*s,
-                        flexDirection: 'row',
-                        justifyContent:'space-evenly',
-                        alignItems: 'center'
-                    }}>
-                        <TouchableOpacity
-                            style={{
-                                // width: "30%",
-                                width:180*s,
-                                height: 70*s,
-                                borderRadius: 35*s,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginRight: 15*s,
-                                // marginTop: 20*s,
-                                // backgroundColor: "#789564"
-                                backgroundColor:'#79CDCD'
-                            }}
-                            onPress={this.login}
-                        >
-                            <Text style={{ color: 'white',fontSize:18}}>登录</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={{
-                                // width: "30%",
-                                width:180*s,
-                                height: 70*s,
-                                borderRadius: 35*s,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginLeft: 15*s,
-                                // marginTop: 20*s,
-                                // backgroundColor: "#789564"
-                                backgroundColor:'#79CDCD'
-
-                            }}
-                            onPress={() => Actions.join()}
-                        >
-                            <Text style={{ color: 'white',fontSize:18 }}>去注册</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View>
-                    {
-                        this.state.isloding ? (<View style={styles.isloding}><ActivityIndicator size='large' color='blue'/></View>) : null
-                    }
-                </View>
-
-            </View>
-        )
-    }
+                    justifyContent: 'center'
+                }}
+                onPress={this.login}>
+                <Text style={{color:"black",opacity:1}}>登录</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={{
+                    width: '60%',
+                    height: 40,
+                    borderWidth:1 ,
+                    borderColor:"gray",
+                    borderRadius:20,
+                    marginTop: 30,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+                onPress={()=>Actions.register()}>
+                <Text>还没有账号？去注册</Text>
+            </TouchableOpacity>
+        </View>
+        {
+            this.state.isloading
+            ?<View style={{paddingTop:400,paddingLeft:"40%",position:"absolute"}}><Text style={{fontSize:20}}>正在登录...</Text></View>
+            :null
+        }
+      </View>
+      </ImageBackground>
+    );
+  }
 }
-const styles = StyleSheet.create({
-    txt: {
-        textAlign: 'center',
-        // textAlignVertical:'center',
-        lineHeight: 40*s,
-        color: '#fff',
-        fontSize: 22
-    },
-    isloding:{
-        marginTop: 100*s,
-    }
-})

@@ -31,15 +31,7 @@ export default class Placedetail extends Component {
     }
 
     componentDidMount() {
-        // myFetch.get('/detail', {
-        //     jdtitle: '太和殿'
-        // })
-        //     .then(res => {
-        //         console.log(JSON.stringify(res.data));
-        //         this.setState({
-        //             data: res.data
-        //         })
-        //     })
+        
     }
 
     show = () => {
@@ -61,7 +53,7 @@ export default class Placedetail extends Component {
                 </View> */}
                 <ImageBackground
                         resizeMode='cover'
-                        source={require("../../assets/lzy/lzy1.jpg")}
+                        source={require("../../assets/dqh/search.jpg")}
                         style={styles.tabbar}
                     >
                         <TouchableOpacity
@@ -94,7 +86,7 @@ export default class Placedetail extends Component {
                     // width:width,
                     // height:height,
                     width:width,
-                    height:height*0.7,
+                    height:height*0.6,
                 }}>
                     <WebView 
                         source={{ uri: 'https://dqh123456.github.io/zhixing/'+this.state.title+'.html' }} 

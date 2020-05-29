@@ -10,7 +10,6 @@ import { Icon, List, Picker, Provider } from '@ant-design/react-native';
 import { Actions } from "react-native-router-flux";
 
 
-
 const { width } = Dimensions.get('window');
 const s = width / 640;
 
@@ -88,35 +87,68 @@ export default class Destination extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: bj,
+            // data: bj,
+            data:[],
             value: [],
             name: '',
-            city: '北京',
+            city: '北京市',
         };
         console.log(props);
     }
 
     componentDidMount() {
         console.log("11111111");
+        console.log
+        fetch(`http://192.168.43.1:3001/jq?city=${this.state.city}`)
+        .then(res=>res.json())
+        .then(res=>{
+            console.log('0000000');
+            console.log(res.message);
+            console.log('0000000');
+
+            this.setState({
+                data:res.message
+            },()=>{
+                console.log('okppppppp')
+            })
+        })
         DeviceEventEmitter.addListener("returnData", (params) => {
             console.log(params + "fanhui00000000");
-            switch (params) {
-                case '西安': this.setState({
-                                city: params,
-                                data:xa
-                            })
-                            break;
-                case '北京':this.setState({
-                                city:params,
-                                data:bj,
-                            });
-                            break;
-                default:this.setState({
-                            city:params,
-                        });
-            }
-            // this.setState({
-            //     city: params
+            // for(var i=0;i<listdata.length;i++){
+            //     if(listdata[i]['city'] === params){
+            //         console.log(params+'2335555555');
+            //         this.setState({
+            //             city: params,
+            //             data:xa
+            //         })
+            //     }
+            // }
+            fetch(`http://192.168.43.1:3001/jq?city=${params}`)
+            .then(res=>res.json())
+            .then(res=>{
+                console.log('0000000');
+                console.log(res.message);
+                this.setState({
+                    city:params,
+                    data:res.message
+                },()=>{
+                    console.log('ppppppp')
+                })
+            })
+            // switch (params) {
+            //     case '西安': this.setState({
+            //                     city: params,
+            //                     data:xa
+            //                 })
+            //                 break;
+            //     case '北京市':this.setState({
+            //                     city:params,
+            //                     data:bj,
+            //                 });
+            //                 break;
+            //     default:this.setState({
+            //                 city:params,
+            //             });
             // }
         })
     }
@@ -242,17 +274,19 @@ export default class Destination extends Component {
                                     <TouchableOpacity
                                         key={idx}
                                         style={styles.placelist}
-                                        onPress={() => { Actions.placelist({ title: item.title }) }}
+                                        onPress={() => { Actions.placelist({ city:this.state.city,title: item.title }) }}
                                     >
                                         <ImageBackground
                                             style={[styles.citybg, styles.citybgp]}
                                             resizeMode="cover"
-                                            source={item.picpath}
+                                            source={{uri:item.imgpath}}
+                                            // source={require(item.imgpath)}
+                                            // source={item.imgpath}
                                         />
                                         <View style={[styles.coverbox, styles.citybg]}></View>
                                         <View style={styles.cityname}>
                                             <Text style={styles.nametxt}>{item.title}</Text>
-                                            <Text style={styles.nametxt}>{item.english}</Text>
+                                            <Text style={styles.nametxt}>{item.etitle}</Text>
                                         </View>
 
                                     </TouchableOpacity>

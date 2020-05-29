@@ -1,59 +1,50 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, AsyncStorage, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { Button } from 'react-native-button';
+import { Text, View,Image ,StyleSheet,AsyncStorage,TouchableOpacity} from 'react-native'
 import Swiper from 'react-native-swiper';
 
 export default class SwiperPage extends Component {
-
-    start=()=>{
-        AsyncStorage.setItem('isFirstIntall','true',()=>{
+    start=  ()=>{
+        AsyncStorage.setItem('isInstall','true',()=>{
             this.props.afterInstall();
-            console.log('success!!!!!@@@@@');
         });
     }
-
     render() {
         return (
-            <Swiper style={styles.wrapper} showsButtons={false}>
-                <View style={styles.slide1}>
-                    <Image style={styles.img} source={require('../../assets/1.png')} />
+            <Swiper showsButtons={false}  >
+                <View style={styles.slide1} >
+                    <Image style={styles.img} source={require('../../assets/dqh/slide1.png')} />
                 </View>
-                <View style={styles.slide2}>
-                    <Image style={styles.img} source={require('../../assets/1.png')} />
+                <View style={styles.slide1} >
+                    <Image style={styles.img} source={require('../../assets/dqh/slide2.png')} />
                 </View>
-                <View style={styles.slide3}>
-                    <Image style={styles.img} source={require('../../assets/1.png')} />
-                    <TouchableOpacity
-                        style={styles.start}
-                        onPress={this.start}
-                    >
-                        <Text>开始体验</Text>
+                <View style={styles.slide1} >
+                    <Image style={styles.img} source={require('../../assets/dqh/slide3.png')} />
+                    <TouchableOpacity style={styles.start} onPress={this.start} >
+                        <Text style={{color:'#fff',fontSize:18}} >开始体验</Text>
                     </TouchableOpacity>
                 </View>
             </Swiper>
         )
     }
 }
-
 const styles = StyleSheet.create({
-    slide3: {
-        flex: 1,
-        height:'100%',
-        alignItems:'center'
-    },
-    start: {
-        bottom: 100,
-        width: 150,
-        height: 40,
-        backgroundColor: '#458657',
-        borderRadius: 30,
-        color:'#fff',
-        justifyContent:'center',
-        alignItems:'center',
-        textAlignVertical:'center',//文字垂直居中
-    },
     img:{
         width:'100%',
         height:'100%'
+    },
+    slide1:{
+        flex:1,
+        height:'100%',
+        alignItems:'center'
+    },
+    start:{
+        position:'absolute',
+        width:120,
+        height:40,
+        bottom:150,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'grey',
+        borderRadius:20
     }
 })

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     View, Text,
-    StyleSheet, ImageBackground,
+    StyleSheet, ImageBackground,ActivityIndicator,
     Dimensions, TextInput, Image,
     ScrollView, TouchableOpacity, FlatList,
 } from "react-native";
@@ -14,19 +14,14 @@ import { WebView } from 'react-native-webview';
 
 const { width,height } = Dimensions.get('window');
 const s = width / 640;
-const htmlContent = `
-    <h1>This HTML snippet is now rendered with native components !</h1>
-    <h2>Enjoy a webview-free and blazing fast application</h2>
-    <span style="color:red">123456</span>
-    <em style="textAlign: center;">Look at how happy this native cat is</em>
-`;
 
 export default class cultureDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: ``,
-            title: props.title
+            title: props.title,
+            finish:false,
         }
         console.log(props.title + '323');
     }
@@ -42,6 +37,12 @@ export default class cultureDetail extends Component {
     //             })
     //         })
     // }
+
+    show = () => {
+        this.setState({
+            finish: true
+        })
+    }
 
     render() {
         return (
@@ -63,8 +64,14 @@ export default class cultureDetail extends Component {
                     </TouchableOpacity>
                     <Text style={styles.title}>{this.state.title}</Text>
                 </ImageBackground>
-                <View style={{ width: width, height: height }}>
-                    <WebView source={{ uri: 'https://lizhaoyun.github.io/zhixinghtml/html/' + this.state.title + '.html' }} />
+                {
+                    this.state.finish ? null : (<View style={styles.load}><ActivityIndicator size='large' color='red' /></View>)
+                }
+                <View style={{ width: width, height: height}}>
+                    <WebView 
+                        source={{ uri: 'https://lizhaoyun.github.io/zhixinghtml/html/' + this.state.title + '.html' }} 
+                        onLoad={this.show}
+                    />
                 </View>
             </View>
         )
@@ -96,5 +103,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         // marginTop:20*s,
         marginBottom: 20 * s,
+    },
+    load:{
+        width:width,
+        height:height,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#fff'
     }
 })

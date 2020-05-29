@@ -6,7 +6,6 @@ import {
     ScrollView, TouchableOpacity, FlatList,
 } from "react-native";
 import { myFetch } from '../utils/index';
-import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
 
 const { width } = Dimensions.get('window');
@@ -28,16 +27,16 @@ var a = [
         picpath: require('../../assets/lzy/dfuzi.png')
     },
     {
-        title: '泰姬陵',
-        picpath: require('../../assets/lzy/dfuzi.png')
+        title: '鞭炮',
+        picpath: require('../../assets/dqh/dbianpao.jpg')
     },
     {
-        title: '汉字',
-        picpath: require('../../assets/lzy/dfuzi.png')
+        title: '长白山',
+        picpath: require('../../assets/dqh/1.png')
     },
     {
         title: '饺子',
-        picpath: require('../../assets/lzy/dfuzi.png')
+        picpath: require('../../assets/dqh/djiaozi.png')
     },
 ]
 
@@ -72,7 +71,7 @@ export default class cultureList extends Component {
             >
                 <ImageBackground
                     resizeMode='cover'
-                    source={require("../../assets/lzy/lzy1.jpg")}
+                    source={require("../../assets/dqh/search.jpg")}
                     style={styles.tabbar}
                 >
                     <TouchableOpacity
