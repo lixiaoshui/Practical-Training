@@ -12,13 +12,13 @@ export default class SwiperPage extends Component {
         return (
             <Swiper showsButtons={false}  >
                 <View style={styles.slide1} >
-                    <Image style={styles.img} source={require('../../assets/slide1.jpg')} />
+                    <Image style={styles.img} source={require('../../assets/dqh/slide1.png')} />
                 </View>
                 <View style={styles.slide1} >
-                    <Image style={styles.img} source={require('../../assets/slide2.jpg')} />
+                    <Image style={styles.img} source={require('../../assets/dqh/slide2.png')} />
                 </View>
                 <View style={styles.slide1} >
-                    <Image style={styles.img} source={require('../../assets/slide3.jpg')} />
+                    <Image style={styles.img} source={require('../../assets/dqh/slide3.png')} />
                     <TouchableOpacity style={styles.start} onPress={this.start} >
                         <Text style={{color:'#fff',fontSize:18}} >开始体验</Text>
                     </TouchableOpacity>

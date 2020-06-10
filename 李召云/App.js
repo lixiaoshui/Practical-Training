@@ -66,6 +66,9 @@ import Mine from './src/mine/Mine';
 import Change from './src/mine/Change';
 import Editor from './src/mine/Editor';
 import Minedt from './src/mine/Minedt';
+import searchResult from './src/search/searchResult';
+import Sider from './src/common/Sider';
+import CitySelect from './city';
 
 console.disableYellowBox = true;//取消下面黄色的弹框提示
 
@@ -190,6 +193,11 @@ const App = () => {
                     // hideTabBar 
                     key="destinationIndex"
                     component={Destination} />
+                    <Scene
+                      hideNavBar
+                      // hideTabBar 
+                      key="cityselect"
+                      component={CitySelect} />
                   <Scene
                     key="cultureList"
                     title="风俗文化目录"
@@ -229,6 +237,13 @@ const App = () => {
                     // headerStyle={{ backgroundColor: '#e3e3de' }}
                     // navBarButtonColor='#fff'
                   />
+
+                  <Scene
+                    key="showresult"
+                    component={searchResult}
+                    hideNavBar
+                    hideTabBar
+                  />
                 </Scene>
 
                 {/* 社区 */}
@@ -247,7 +262,8 @@ const App = () => {
                 </Scene>
                 <Scene
                   key="tryselect"
-                  component={tryselect}
+                  hideNavBar
+                  component={CitySelect}
                 />
 
                 {/* <Scene key="个人中心"

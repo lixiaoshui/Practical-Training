@@ -78,7 +78,7 @@ export default class Login extends Component {
               alignItems: 'center',
               paddingLeft: 20,
             }}>
-            <Text style={{color:"#0D0D0D"}}><Icon name="keyboard-o" color="brown"/>&emsp;密&ensp;&nbsp;码</Text>
+            <Text style={{color:"#0D0D0D"}}><Icon name="laptop" color="brown"/>&emsp;密&ensp;&nbsp;码</Text>
             <TextInput 
                 onChangeText={this.pwdhandle}
                 secureTextEntry={true}

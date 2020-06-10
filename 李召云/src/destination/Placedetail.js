@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
     View, Text,
-    StyleSheet, ImageBackground,
+    StyleSheet, ImageBackground,ActivityIndicator,
     Dimensions, TextInput,Image,
     ScrollView, TouchableOpacity, FlatList,
 } from "react-native";
@@ -24,21 +24,20 @@ export default class Placedetail extends Component {
         super(props);
         this.state = {
             data: ``,
-            title:props.title
+            title:props.title,
+            finish:false,
         }
         console.log(props.title+'323');
     }
 
     componentDidMount() {
-        // myFetch.get('/detail', {
-        //     jdtitle: '太和殿'
-        // })
-        //     .then(res => {
-        //         console.log(JSON.stringify(res.data));
-        //         this.setState({
-        //             data: res.data
-        //         })
-        //     })
+        
+    }
+
+    show = () => {
+        this.setState({
+            finish: true
+        })
     }
 
     render() {
@@ -54,7 +53,7 @@ export default class Placedetail extends Component {
                 </View> */}
                 <ImageBackground
                         resizeMode='cover'
-                        source={require("../../assets/lzy/lzy1.jpg")}
+                        source={require("../../assets/dqh/search.jpg")}
                         style={styles.tabbar}
                     >
                         <TouchableOpacity
@@ -69,9 +68,30 @@ export default class Placedetail extends Component {
                         </TouchableOpacity>
                         <Text style={styles.title}>{this.state.title}</Text>
                     </ImageBackground>
-
-                <View style={{width:width,height:height}}>
-                    <WebView source={{ uri: 'https://lizhaoyun.github.io/zhixinghtml/html/'+this.state.title+'.html' }} />
+                {
+                    this.state.finish ? null : (<View style={styles.load}><ActivityIndicator size='large' color='red' /></View>)
+                }
+                <View style={{
+                    // width:width,
+                    // height:height,
+                    width:width,
+                    height:height*0.3,
+                }}>
+                    <WebView 
+                        source={{ uri: 'https://lizhaoyun.github.io/zhixinghtml/html/map/'+this.state.title+'map.html' }} 
+                        onLoad={this.show}
+                    />
+                </View>
+                <View style={{
+                    // width:width,
+                    // height:height,
+                    width:width,
+                    height:height*0.6,
+                }}>
+                    <WebView 
+                        source={{ uri: 'https://dqh123456.github.io/zhixing/'+this.state.title+'.html' }} 
+                        onLoad={this.show}
+                    />
                 </View>
             </View>
         )
@@ -103,5 +123,12 @@ const styles=StyleSheet.create({
         fontSize:20,
         // marginTop:20*s,
         marginBottom:20*s,
+    },
+    load:{
+        width:width,
+        height:height,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#fff'
     }
 })

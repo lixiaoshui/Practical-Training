@@ -24,7 +24,7 @@ const article =[
 export default class Home extends Component{
 render(){
   return (
-    <ImageBackground source={require("../../assets/dqh/homebc.png")} style={{width: '100%',height:"100%"}}>
+    <ImageBackground source={require("../../assets/dqh/homebc.png")} style={{width: '100%',height:"100%" ,flex: 1,}}>
     <View>
       {/* <ImageBackground source={require("../../assets/dqh/search.jpg")} style={{width: '100%',}}>
           <View style={styles.head}>
@@ -36,25 +36,17 @@ render(){
               </View>
           </View>
       </ImageBackground> */}
-      <ImageBackground
-                    style={{
-                        width: width,
-                        height: 80 *w,
-                        justifyContent: 'center'
-                    }}
-                    resizeMode="cover"
-                    source={require('../../assets/lzy/albg5.jpg')}
-                >
-                    <View style={styles.searchbar}>
-                        <TextInput
-                            style={styles.search}
-                            placeholderTextColor="gray"
-                            placeholder="请输入关键词"
-                        />
-                        <Icon name='search' size="md" style={styles.icon} />
-                    </View>
-
-                </ImageBackground>
+      
+      <ImageBackground source={require("../../assets/dqh/search.jpg")} style={{width: '100%',}}>
+        <View style={styles.head}>
+            <View style={styles.search}>
+                <TextInput placeholder='请输入目的地'
+                    style={{color:"white",fontSize:10}} >
+                </TextInput>
+                <Icon name="search" style={{fontSize:30 *w,marginLeft:240 *w,color:"green"}} onPress={()=>Actions.showresult()}/>
+            </View>
+        </View>
+    </ImageBackground>
     <ScrollView>
     <Carousel
       autoplay
@@ -182,19 +174,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'center',
   },
-  
-search: {
-  width: 450 *w,
-  height: 50 *w,
-  paddingLeft: 30 *w,
-  borderWidth: 2 *w,
-  borderColor: "#999999",
-  borderRadius: 25 *w,
-},
-icon: {
-  position: "absolute",
-  top: 8 *w,
-  right: 110 *w
-},
 })
 

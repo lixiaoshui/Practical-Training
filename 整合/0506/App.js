@@ -28,7 +28,7 @@ import SplashScreen from 'react-native-splash-screen';
 // import Detail from "./components/Detail";
 // import Shouye from "./components/Shouye";
 // import Personal from "./components/Personal";
-import Icon from '@ant-design/react-native'
+import {Icon} from '@ant-design/react-native'
 // import Shopcar from './components/Shopcar';
 // // import Goods from "./components/Goods";
 // // import Home from "./components/Home";
